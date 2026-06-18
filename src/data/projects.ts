@@ -81,7 +81,7 @@ export const projects = [
     value: '₹ 58.92 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture45.jpg',
+    image: '/project-gallery/Equipment Installation & Commissioning/Picture49.jpg',
     description: 'Comprehensive Caster Works at Angul.',
   },
   {
