@@ -70,7 +70,7 @@ export function Navbar() {
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 px-3 py-1 flex-shrink-0">
-              <Image src="/logo.webp" alt="MMTPL" width={32} height={32} priority className="rounded-full object-cover" />
+              <Image src="/logo.png" alt="MMTPL" width={32} height={32} priority className="rounded-full object-cover bg-white" />
               <span className="font-editorial font-bold text-[var(--color-obsidian)] text-[17px]">MMTPL</span>
             </Link>
 
@@ -170,7 +170,7 @@ export function Navbar() {
         <div className="flex items-center justify-between px-4">
           {/* Mobile Logo pill */}
           <Link href="/" className="flex items-center gap-2.5 bg-[var(--color-paper)]/90 backdrop-blur-xl border border-[var(--color-silver)]/60 px-3 py-2 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
-            <Image src="/logo.webp" alt="MMTPL" width={28} height={28} priority className="rounded-full object-cover" />
+            <Image src="/logo.png" alt="MMTPL" width={28} height={28} priority className="rounded-full object-cover bg-white" />
             <span className="font-editorial font-bold text-[var(--color-obsidian)] text-base">MMTPL</span>
           </Link>
 

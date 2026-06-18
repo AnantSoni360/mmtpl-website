@@ -40,10 +40,10 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6 inline-flex">
               <div className="bg-white p-1.5 rounded-full shadow-lg">
                 <Image 
-                  src="/logo.jpg" 
+                  src="/logo.png" 
                   alt="MMTPL Logo" 
-                  width={36} 
-                  height={36} 
+                  width={48} 
+                  height={48} 
                   className="rounded-full object-cover"
                 />
               </div>
