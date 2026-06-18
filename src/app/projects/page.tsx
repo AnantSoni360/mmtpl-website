@@ -146,7 +146,7 @@ export default function Projects() {
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
           <div className="text-center mb-12">
             <FadeUp>
-              <TagPill variant="obsidian" className="mb-6">Ongoing Operations</TagPill>
+              <TagPill variant="lilac" className="mb-6">Ongoing Operations</TagPill>
               <h2 className="display text-obsidian dark:text-white mb-6">Long-Term Maintenance Experience</h2>
               <p className="body-text text-graphite dark:text-gray-300 max-w-[800px] mx-auto text-lg leading-relaxed">
                 MMTPL has been entrusted with regular refractory maintenance and shutdown services for multiple coke oven facilities at JSW Steel, demonstrating the confidence of leading steel manufacturers in our technical capabilities and service quality.
