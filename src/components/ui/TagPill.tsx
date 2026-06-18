@@ -10,11 +10,11 @@ export function TagPill({ children, variant = 'lilac', className }: TagPillProps
   return (
     <span
       className={cn(
-        'inline-block font-switzer font-medium text-[14px] text-[var(--color-obsidian)]',
+        'inline-block font-switzer font-medium text-[14px] text-obsidian',
         'px-[12px] py-[5px] rounded-[var(--radius-pill)] shadow-sm',
-        variant === 'lilac' ? 'bg-[var(--color-lilac-bloom)]' : 
-        variant === 'bone' ? 'bg-[var(--color-bone)]' : 
-        'bg-[var(--color-paper)]',
+        variant === 'lilac' ? 'bg-lilac-bloom' : 
+        variant === 'bone' ? 'bg-bone' : 
+        'bg-paper',
         className
       )}
     >

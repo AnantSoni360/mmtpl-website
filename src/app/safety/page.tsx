@@ -47,23 +47,23 @@ export default function Safety() {
         </div>
         
         {/* Deep Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-lilac-bloom)] opacity-10 dark:opacity-20 rounded-full blur-[120px] pointer-events-none z-0" />
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-[var(--color-sky-veil)] opacity-10 dark:opacity-20 rounded-full blur-[100px] pointer-events-none z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lilac-bloom opacity-10 dark:opacity-20 rounded-full blur-[120px] pointer-events-none z-0" />
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-sky-veil opacity-10 dark:opacity-20 rounded-full blur-[100px] pointer-events-none z-0" />
 
         <div className="container mx-auto px-6 relative z-10 text-center max-w-[900px]">
           <FadeUp delay={0.1}>
-            <TagPill variant="lilac" className="mb-8 mx-auto backdrop-blur-md border border-[var(--color-lilac-bloom)]/30">
+            <TagPill variant="lilac" className="mb-8 mx-auto backdrop-blur-md border border-lilac-bloom/30">
               <ShieldCheck className="w-4 h-4 mr-2 inline-block" /> 
               Safety First Culture
             </TagPill>
           </FadeUp>
           <FadeUp delay={0.2}>
-            <h1 className="display-lg text-[var(--color-obsidian)] mb-8 tracking-tight">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-sky-veil)] to-purple-500">Zero Harm</span> Policy
+            <h1 className="display-lg text-obsidian mb-8 tracking-tight">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-veil to-purple-500">Zero Harm</span> Policy
             </h1>
           </FadeUp>
           <FadeUp delay={0.3}>
-            <p className="body-text text-[var(--color-graphite)] text-xl md:text-2xl leading-relaxed">
+            <p className="body-text text-graphite text-xl md:text-2xl leading-relaxed">
               At MMTPL, we believe that every accident is preventable. Safety is not just a priority; it is a core value integrated into the DNA of every project we execute.
             </p>
           </FadeUp>
@@ -78,10 +78,10 @@ export default function Safety() {
             <Card className="relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl border border-white/50 dark:border-white/10 h-full text-center p-8">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <ShieldCheck className="w-12 h-12 mx-auto text-blue-500 mb-6 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
-              <div className="display text-[var(--color-obsidian)] mb-2 text-4xl">
+              <div className="display text-obsidian mb-2 text-4xl">
                 <AnimatedCounter value={1.7} decimals={1} suffix="M+" />
               </div>
-              <div className="caption text-[var(--color-slate)] uppercase tracking-wider font-semibold">Safe Man Hours</div>
+              <div className="caption text-slate uppercase tracking-wider font-semibold">Safe Man Hours</div>
             </Card>
           </StaggerItem>
 
@@ -89,10 +89,10 @@ export default function Safety() {
             <Card className="relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl border border-white/50 dark:border-white/10 h-full text-center p-8">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <HardHat className="w-12 h-12 mx-auto text-purple-500 mb-6 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
-              <div className="display text-[var(--color-obsidian)] mb-2 text-4xl">
+              <div className="display text-obsidian mb-2 text-4xl">
                 <AnimatedCounter value={100} suffix="%" />
               </div>
-              <div className="caption text-[var(--color-slate)] uppercase tracking-wider font-semibold">PPE Compliance</div>
+              <div className="caption text-slate uppercase tracking-wider font-semibold">PPE Compliance</div>
             </Card>
           </StaggerItem>
 
@@ -100,19 +100,19 @@ export default function Safety() {
             <Card className="relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl border border-white/50 dark:border-white/10 h-full text-center p-8">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Activity className="w-12 h-12 mx-auto text-emerald-500 mb-6 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
-              <div className="display text-[var(--color-obsidian)] mb-2 text-4xl">
+              <div className="display text-obsidian mb-2 text-4xl">
                 <AnimatedCounter value={0} />
               </div>
-              <div className="caption text-[var(--color-slate)] uppercase tracking-wider font-semibold">Fatalities</div>
+              <div className="caption text-slate uppercase tracking-wider font-semibold">Fatalities</div>
             </Card>
           </StaggerItem>
 
           <StaggerItem>
             <Card className="relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 bg-white/60 dark:bg-[#0a1128]/60 backdrop-blur-xl border border-white/50 dark:border-white/10 h-full text-center p-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-obsidian)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <FileCheck2 className="w-12 h-12 mx-auto text-[var(--color-obsidian)] mb-6 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
-              <div className="display text-[var(--color-obsidian)] mb-2 text-4xl">ISO</div>
-              <div className="caption text-[var(--color-slate)] uppercase tracking-wider font-semibold">45001:2018 Certified</div>
+              <div className="absolute inset-0 bg-gradient-to-br from-obsidian/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <FileCheck2 className="w-12 h-12 mx-auto text-obsidian mb-6 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+              <div className="display text-obsidian mb-2 text-4xl">ISO</div>
+              <div className="caption text-slate uppercase tracking-wider font-semibold">45001:2018 Certified</div>
             </Card>
           </StaggerItem>
 
@@ -124,12 +124,12 @@ export default function Safety() {
         <FadeUp>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
             <div>
-              <h2 className="display text-[var(--color-obsidian)] text-3xl md:text-4xl">Safety Statistics Dashboard</h2>
-              <p className="body-text text-[var(--color-slate)] mt-2 text-lg">Current & Cumulative Live Record Tracking</p>
+              <h2 className="display text-obsidian text-3xl md:text-4xl">Safety Statistics Dashboard</h2>
+              <p className="body-text text-slate mt-2 text-lg">Current & Cumulative Live Record Tracking</p>
             </div>
-            <div className="mt-6 md:mt-0 flex items-center gap-3 bg-[var(--color-bone)] dark:bg-[#162033] px-5 py-2.5 rounded-full border border-[var(--color-silver)] shadow-sm">
+            <div className="mt-6 md:mt-0 flex items-center gap-3 bg-bone dark:bg-[#162033] px-5 py-2.5 rounded-full border border-silver shadow-sm">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-              <span className="text-xs font-bold text-[var(--color-obsidian)] uppercase tracking-widest">Live Report</span>
+              <span className="text-xs font-bold text-obsidian uppercase tracking-widest">Live Report</span>
             </div>
           </div>
         </FadeUp>
@@ -137,17 +137,17 @@ export default function Safety() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {safetyMetrics.map((metric, i) => (
             <FadeUp key={metric.id} delay={i * 0.05} className="h-full">
-              <Card className="p-6 h-full flex flex-col justify-between group hover:border-[var(--color-obsidian)] dark:hover:border-white/30 transition-all duration-300 bg-[var(--color-paper)] hover:shadow-lg">
+              <Card className="p-6 h-full flex flex-col justify-between group hover:border-obsidian dark:hover:border-white/30 transition-all duration-300 bg-paper hover:shadow-lg">
                 <div className="flex items-start justify-between mb-8">
-                  <div className={`p-3.5 rounded-xl ${metric.bg} border border-[var(--color-silver)] dark:border-white/5 group-hover:scale-110 transition-transform duration-500`}>
+                  <div className={`p-3.5 rounded-xl ${metric.bg} border border-silver dark:border-white/5 group-hover:scale-110 transition-transform duration-500`}>
                     <metric.icon className={`w-6 h-6 ${metric.color}`} strokeWidth={2} />
                   </div>
-                  <div className="text-[var(--color-mist)] text-xs font-mono font-bold">#{metric.id.toString().padStart(2, '0')}</div>
+                  <div className="text-mist text-xs font-mono font-bold">#{metric.id.toString().padStart(2, '0')}</div>
                 </div>
                 
                 <div>
-                  <h3 className="body-text text-[var(--color-slate)] text-sm uppercase tracking-wider mb-2 font-medium">{metric.title}</h3>
-                  <div className={`text-3xl font-switzer font-bold tracking-tight ${metric.isSuccess ? 'text-emerald-500 dark:text-emerald-400' : 'text-[var(--color-obsidian)]'}`}>
+                  <h3 className="body-text text-slate text-sm uppercase tracking-wider mb-2 font-medium">{metric.title}</h3>
+                  <div className={`text-3xl font-switzer font-bold tracking-tight ${metric.isSuccess ? 'text-emerald-500 dark:text-emerald-400' : 'text-obsidian'}`}>
                     {metric.value}
                   </div>
                 </div>
@@ -163,12 +163,12 @@ export default function Safety() {
           
           {/* Quality Panel */}
           <FadeUp className="relative group h-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-sky-veil)]/20 to-transparent rounded-[var(--radius-card-lg)] blur-xl transition-all duration-700 group-hover:blur-2xl opacity-50" />
-            <div className="relative h-full bg-white/80 dark:bg-[#162033]/90 backdrop-blur-xl border border-[var(--color-silver)] dark:border-white/10 p-10 md:p-14 rounded-[var(--radius-card-lg)] overflow-hidden shadow-xl">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--color-sky-veil)] opacity-20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-sky-veil/20 to-transparent rounded-[var(--radius-card-lg)] blur-xl transition-all duration-700 group-hover:blur-2xl opacity-50" />
+            <div className="relative h-full bg-white/80 dark:bg-[#162033]/90 backdrop-blur-xl border border-silver dark:border-white/10 p-10 md:p-14 rounded-[var(--radius-card-lg)] overflow-hidden shadow-xl">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-sky-veil opacity-20 rounded-full blur-3xl pointer-events-none" />
               
-              <TagPill variant="bone" className="mb-6 bg-white dark:bg-white/5 border border-[var(--color-silver)] shadow-sm">Quality Focus</TagPill>
-              <h2 className="display text-[var(--color-obsidian)] mb-8 text-3xl md:text-4xl">Quality Commitment</h2>
+              <TagPill variant="bone" className="mb-6 bg-white dark:bg-white/5 border border-silver shadow-sm">Quality Focus</TagPill>
+              <h2 className="display text-obsidian mb-8 text-3xl md:text-4xl">Quality Commitment</h2>
               
               <div className="space-y-6 relative z-10">
                 {[
@@ -179,10 +179,10 @@ export default function Safety() {
                   "Maintaining high-end equipment in perfect operational condition."
                 ].map((text, i) => (
                   <div key={i} className="flex items-start gap-4 group/item">
-                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-sky-veil)]/20 flex items-center justify-center group-hover/item:scale-110 group-hover/item:bg-[var(--color-sky-veil)] group-hover/item:shadow-[0_0_12px_var(--color-sky-veil)] transition-all duration-300">
-                      <CheckCircle2 className="w-4 h-4 text-[var(--color-obsidian)]" />
+                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-sky-veil/20 flex items-center justify-center group-hover/item:scale-110 group-hover/item:bg-sky-veil group-hover/item:shadow-[0_0_12px_var(--color-sky-veil)] transition-all duration-300">
+                      <CheckCircle2 className="w-4 h-4 text-obsidian" />
                     </div>
-                    <p className="body-text text-[var(--color-graphite)] text-lg leading-relaxed group-hover/item:text-[var(--color-obsidian)] transition-colors duration-300">{text}</p>
+                    <p className="body-text text-graphite text-lg leading-relaxed group-hover/item:text-obsidian transition-colors duration-300">{text}</p>
                   </div>
                 ))}
               </div>
@@ -191,9 +191,9 @@ export default function Safety() {
 
           {/* Safety Panel */}
           <FadeUp delay={0.2} className="relative group h-full">
-            <div className="absolute inset-0 bg-gradient-to-bl from-[var(--color-lilac-bloom)]/30 to-transparent rounded-[var(--radius-card-lg)] blur-xl transition-all duration-700 group-hover:blur-2xl opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-lilac-bloom/30 to-transparent rounded-[var(--radius-card-lg)] blur-xl transition-all duration-700 group-hover:blur-2xl opacity-60" />
             <div className="relative h-full bg-[#0a1128] border border-white/10 p-10 md:p-14 rounded-[var(--radius-card-lg)] overflow-hidden shadow-2xl">
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--color-lilac-bloom)] opacity-20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-lilac-bloom opacity-20 rounded-full blur-3xl pointer-events-none" />
               
               <TagPill variant="lilac" className="mb-6 bg-white/10 border border-white/20 text-white backdrop-blur-md">Safety Environment</TagPill>
               <h2 className="display text-white mb-8 text-3xl md:text-4xl">Zero Accident Culture</h2>
@@ -208,7 +208,7 @@ export default function Safety() {
                   "Well-equipped first-aid facilities and emergency teams."
                 ].map((text, i) => (
                   <div key={i} className="flex items-start gap-4 group/item">
-                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-lilac-bloom)]/20 flex items-center justify-center group-hover/item:scale-110 group-hover/item:bg-[var(--color-lilac-bloom)] group-hover/item:shadow-[0_0_12px_var(--color-lilac-bloom)] transition-all duration-300">
+                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-lilac-bloom/20 flex items-center justify-center group-hover/item:scale-110 group-hover/item:bg-lilac-bloom group-hover/item:shadow-[0_0_12px_var(--color-lilac-bloom)] transition-all duration-300">
                       <ShieldCheck className="w-4 h-4 text-white group-hover/item:text-[#0a1128] transition-colors duration-300" />
                     </div>
                     <p className="body-text text-gray-300 text-lg leading-relaxed group-hover/item:text-white transition-colors duration-300">{text}</p>
