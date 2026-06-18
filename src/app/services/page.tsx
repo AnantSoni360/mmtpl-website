@@ -149,7 +149,7 @@ export default function Services() {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 10, opacity: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 bg-[var(--color-obsidian)] p-10 md:p-16 rounded-[var(--radius-card-lg)] w-full max-w-[1100px] shadow-2xl flex flex-col items-center text-center overflow-hidden border border-[var(--color-silver)]"
+              className="relative z-10 bg-[#0a1128] p-10 md:p-16 rounded-[var(--radius-card-lg)] w-full max-w-[1100px] shadow-2xl flex flex-col items-center text-center overflow-hidden border border-[var(--color-silver)]"
               onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing
             >
               {/* Close Button */}
@@ -169,7 +169,7 @@ export default function Services() {
                   >
                     <source src={videoMap[hoveredService.icon]} type="video/mp4" />
                   </video>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-obsidian)] via-[var(--color-obsidian)]/70 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/70 to-transparent z-10" />
                 </>
               )}
               
