@@ -375,7 +375,7 @@ export const projects = [
     year: '—',
     status: 'Completed',
     category: 'Overseas',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture48.jpg',
+    image: '/project-gallery/Equipment Installation & Commissioning/Picture43.jpg',
     description: 'Refractory Installation Works for 1.4 MTPA Rolling Mill Reheating Furnace.',
   },
 
