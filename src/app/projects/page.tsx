@@ -142,13 +142,13 @@ export default function Projects() {
       <InteractiveProjectExplorer />
 
       {/* ── LONG-TERM MAINTENANCE EXPERIENCE ── */}
-      <section className="bg-[var(--color-obsidian)] py-16 mt-8">
+      <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
           <div className="text-center mb-12">
             <FadeUp>
-              <TagPill variant="lilac" className="mb-6">Ongoing Operations</TagPill>
-              <h2 className="display text-white mb-6">Long-Term Maintenance Experience</h2>
-              <p className="body-text text-gray-300 max-w-[800px] mx-auto text-lg leading-relaxed">
+              <TagPill variant="obsidian" className="mb-6">Ongoing Operations</TagPill>
+              <h2 className="display text-obsidian dark:text-white mb-6">Long-Term Maintenance Experience</h2>
+              <p className="body-text text-graphite dark:text-gray-300 max-w-[800px] mx-auto text-lg leading-relaxed">
                 MMTPL has been entrusted with regular refractory maintenance and shutdown services for multiple coke oven facilities at JSW Steel, demonstrating the confidence of leading steel manufacturers in our technical capabilities and service quality.
               </p>
             </FadeUp>
@@ -156,8 +156,8 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FadeUp delay={0.1}>
-              <div className="bg-[#1A1A1A] p-8 rounded-[var(--radius-card)] border border-gray-800 h-full">
-                <h3 className="heading-sm text-white mb-6 border-b border-gray-800 pb-4">Maintenance Contracts Executed</h3>
+              <div className="bg-bone dark:bg-[#162033] p-8 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full shadow-sm">
+                <h3 className="heading-sm text-obsidian dark:text-white mb-6 border-b border-silver dark:border-white/10 pb-4">Maintenance Contracts Executed</h3>
                 <ul className="flex flex-col gap-4">
                   {[
                     'Coke Oven (Non-Recovery) – JSW Vijayanagar',
@@ -167,8 +167,8 @@ export default function Projects() {
                     'Coke Oven (Recovery) – JSW Ispat Dolvi'
                   ].map((contract, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="text-[var(--color-lilac-bloom)] mt-1">•</span>
-                      <span className="body-text text-gray-300">{contract}</span>
+                      <span className="text-lilac-bloom mt-1">•</span>
+                      <span className="body-text text-graphite dark:text-gray-300">{contract}</span>
                     </li>
                   ))}
                 </ul>
@@ -176,8 +176,8 @@ export default function Projects() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <div className="bg-[#1A1A1A] p-8 rounded-[var(--radius-card)] border border-gray-800 h-full">
-                <h3 className="heading-sm text-white mb-6 border-b border-gray-800 pb-4">Facility Capacities</h3>
+              <div className="bg-bone dark:bg-[#162033] p-8 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full shadow-sm">
+                <h3 className="heading-sm text-obsidian dark:text-white mb-6 border-b border-silver dark:border-white/10 pb-4">Facility Capacities</h3>
                 <ul className="flex flex-col gap-4">
                   {[
                     '4 × 32 Ovens + 1 × 5 Ovens + 1 × 6 Ovens',
@@ -187,8 +187,8 @@ export default function Projects() {
                     '1 Additional Recovery Coke Oven Battery'
                   ].map((capacity, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="text-[var(--color-lilac-bloom)] mt-1">•</span>
-                      <span className="body-text text-gray-300">{capacity}</span>
+                      <span className="text-lilac-bloom mt-1">•</span>
+                      <span className="body-text text-graphite dark:text-gray-300">{capacity}</span>
                     </li>
                   ))}
                 </ul>
@@ -201,8 +201,8 @@ export default function Projects() {
       {/* ── PROVEN EXPERTISE CTA ── */}
       <section className="container mx-auto px-6 max-w-[800px] text-center py-12">
         <FadeUp>
-          <h2 className="display text-[var(--color-obsidian)] mb-6">Proven Expertise</h2>
-          <p className="body-text text-[var(--color-graphite)] text-lg leading-relaxed">
+          <h2 className="display text-obsidian dark:text-white mb-6">Proven Expertise</h2>
+          <p className="body-text text-graphite dark:text-gray-300 text-lg leading-relaxed">
             For more than two decades, MMTPL has consistently delivered high-quality construction, refractory installation, shutdown maintenance, and turnkey industrial solutions for some of the most demanding steel and manufacturing facilities in India. Our proven track record reflects our commitment to engineering excellence, safety, quality, and timely project execution.
           </p>
         </FadeUp>
