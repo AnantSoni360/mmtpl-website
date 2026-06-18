@@ -75,6 +75,15 @@
   --section-gap: 160px;
   --page-max-width: 1200px;
   --color-bg-main: var(--color-paper);
+  --color-obsidian: #0a1128;
+  --color-graphite: #1c2541;
+  --color-slate: #6b7a99;
+  --color-mist: #bcbcbc;
+  --color-silver: #d6d6d6;
+  --color-bone: #f5f2f0;
+  --color-paper: #ffffff;
+  --color-lilac-bloom: #f1ccff;
+  --color-sky-veil: #91e0ff;
 }
 
 .dark {
