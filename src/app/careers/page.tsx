@@ -239,9 +239,10 @@ export default function Careers() {
                         alert(`ERROR! ${error.message}`)
                       }}
                       appearance={{
-                        container: 'border border-dashed border-silver bg-bone/50 dark:bg-[#0a1128]/50 rounded-xl p-8 transition-colors hover:border-obsidian',
-                        button: 'bg-obsidian text-white font-switzer font-medium px-6 py-2.5 rounded-lg mt-4 cursor-pointer hover:bg-graphite transition-colors text-sm',
-                        label: 'font-switzer text-slate text-sm',
+                        container: 'border border-dashed border-silver dark:border-white/30 bg-bone/50 dark:bg-obsidian/50 rounded-xl p-8 transition-colors hover:border-obsidian dark:hover:border-white/60',
+                        button: 'bg-obsidian dark:bg-white text-white dark:text-obsidian font-switzer font-medium px-6 py-2.5 rounded-lg mt-4 cursor-pointer transition-colors text-sm',
+                        label: 'font-switzer text-obsidian dark:text-gray-200 text-sm font-medium',
+                        allowedContent: 'font-switzer text-graphite dark:text-gray-400 text-xs mt-1',
                       }}
                     />
                   )}

@@ -222,14 +222,14 @@ export default function Clients() {
       </section>
 
       {/* ── INTERNATIONAL PRESENCE ── */}
-      <section className="bg-[var(--color-obsidian)] py-[var(--section-gap)]">
+      <section className="bg-bg-main border-y border-silver/30 dark:border-white/10 dark:bg-[#0a1128] py-[var(--section-gap)]">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
           <FadeUp>
             <div className="flex items-center gap-3 mb-12 justify-center">
-              <Globe className="w-8 h-8 text-white" />
-              <h2 className="display text-white">International Presence</h2>
+              <Globe className="w-8 h-8 text-obsidian dark:text-white" />
+              <h2 className="display text-obsidian dark:text-white">International Presence</h2>
             </div>
-            <p className="body-text text-gray-300 text-center max-w-[800px] mx-auto mb-16 text-lg">
+            <p className="body-text text-graphite dark:text-gray-300 text-center max-w-[800px] mx-auto mb-16 text-lg">
               MMTPL has successfully expanded its operations beyond India and delivered major projects across the Middle East.
             </p>
           </FadeUp>
@@ -237,16 +237,16 @@ export default function Clients() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {intlClients.map((region, idx) => (
               <FadeUp delay={0.1 * (idx + 1)} key={idx}>
-                <div className="bg-[#1A1A1A] p-8 rounded-[var(--radius-card)] border border-gray-800 h-full hover:border-gray-600 transition-colors">
+                <div className="bg-bone dark:bg-[#162033] p-8 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full hover:border-obsidian dark:hover:border-gray-600 transition-colors shadow-sm">
                   <div className="flex items-center gap-2 mb-6">
-                    <MapPin className="w-5 h-5 text-[var(--color-lilac-bloom)]" />
-                    <h3 className="heading-sm text-white">{region.country}</h3>
+                    <MapPin className="w-5 h-5 text-lilac-bloom" />
+                    <h3 className="heading-sm text-obsidian dark:text-white">{region.country}</h3>
                   </div>
                   <ul className="flex flex-col gap-3 mb-6">
                     {region.clients.map((client, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-[var(--color-silver)] mt-1">•</span>
-                        <span className="body-text text-gray-300">{client}</span>
+                        <span className="text-silver dark:text-gray-500 mt-1">•</span>
+                        <span className="body-text text-graphite dark:text-gray-300">{client}</span>
                       </li>
                     ))}
                   </ul>
@@ -268,17 +268,17 @@ export default function Clients() {
       <section className="container mx-auto px-6 max-w-[var(--page-max-width)] py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <FadeUp delay={0.1}>
-            <div className="bg-[var(--color-bone)] p-10 rounded-[var(--radius-card)] border border-[var(--color-silver)] h-full">
+            <div className="bg-bone dark:bg-[#162033] p-10 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <Handshake className="w-6 h-6 text-[var(--color-obsidian)]" />
-                <h2 className="heading-sm text-[var(--color-obsidian)]">Engineering & EPC Partners</h2>
+                <Handshake className="w-6 h-6 text-obsidian dark:text-white" />
+                <h2 className="heading-sm text-obsidian dark:text-white">Engineering & EPC Partners</h2>
               </div>
-              <p className="body-text text-[var(--color-graphite)] mb-6 text-sm">
+              <p className="body-text text-graphite dark:text-gray-300 mb-6 text-sm">
                 As a trusted execution partner, subcontractor, and joint venture associate, MMTPL has collaborated with leading engineering and EPC organizations:
               </p>
               <div className="flex flex-wrap gap-3">
                 {epcPartners.map((partner, i) => (
-                  <div key={i} className="bg-white px-4 py-2 rounded-md border border-[var(--color-silver)] text-sm font-switzer font-medium text-[var(--color-obsidian)] shadow-sm">
+                  <div key={i} className="bg-white dark:bg-obsidian px-4 py-2 rounded-md border border-silver dark:border-white/20 text-sm font-switzer font-medium text-obsidian dark:text-paper shadow-sm">
                     {partner}
                   </div>
                 ))}
@@ -287,17 +287,17 @@ export default function Clients() {
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div className="bg-[var(--color-bone)] p-10 rounded-[var(--radius-card)] border border-[var(--color-silver)] h-full">
+            <div className="bg-bone dark:bg-[#162033] p-10 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <Cpu className="w-6 h-6 text-[var(--color-obsidian)]" />
-                <h2 className="heading-sm text-[var(--color-obsidian)]">Global Technology Partners</h2>
+                <Cpu className="w-6 h-6 text-obsidian dark:text-white" />
+                <h2 className="heading-sm text-obsidian dark:text-white">Global Technology Partners</h2>
               </div>
-              <p className="body-text text-[var(--color-graphite)] mb-6 text-sm">
+              <p className="body-text text-graphite dark:text-gray-300 mb-6 text-sm">
                 We have successfully executed projects utilizing technologies supplied by some of the world's most recognized OEMs:
               </p>
               <div className="flex flex-wrap gap-2">
                 {techPartners.map((partner, i) => (
-                  <div key={i} className="bg-white px-3 py-1.5 rounded-full border border-[var(--color-silver)] text-xs font-switzer text-[var(--color-slate)] shadow-sm">
+                  <div key={i} className="bg-white dark:bg-obsidian px-3 py-1.5 rounded-full border border-silver dark:border-white/20 text-xs font-switzer text-slate dark:text-gray-300 shadow-sm">
                     {partner}
                   </div>
                 ))}
