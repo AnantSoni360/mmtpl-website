@@ -1,0 +1,239 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// PHASE 1: ACTIVE MODELS
+// ==========================================
+
+model Inquiry {
+  id          String        @id @default(cuid())
+  name        String
+  company     String?
+  email       String
+  phone       String
+  service     String
+  message     String        @db.Text
+  status      InquiryStatus @default(NEW)
+  ipAddress   String?       
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model JobPosting {
+  id           String           @id @default(cuid())
+  title        String
+  department   String
+  location     String
+  type         JobType          @default(FULL_TIME)
+  experience   String    
+  description  String           @db.Text
+  requirements String[]
+  isActive     Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  applications JobApplication[]
+}
+
+model JobApplication {
+  id           String            @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  position     String
+  experience   String
+  message      String?           @db.Text
+  resumeUrl    String    
+  jobPostingId String?
+  status       ApplicationStatus @default(RECEIVED)
+  
+  // Future relation to JobSeeker profile
+  jobSeekerId  String?           
+  jobSeeker    JobSeekerProfile? @relation(fields: [jobSeekerId], references: [id])
+
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  jobPosting   JobPosting?       @relation(fields: [jobPostingId], references: [id])
+
+  @@index([email])
+  @@index([status])
+}
+
+// ==========================================
+// FUTURE PHASES: FOUNDATION MODELS
+// (Created in DB, unused in Phase 1 App)
+// ==========================================
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+  CLIENT
+  JOB_SEEKER
+}
+
+model User {
+  id               String            @id @default(cuid())
+  email            String            @unique
+  passwordHash     String?
+  role             Role
+  isActive         Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  employeeProfile  EmployeeProfile?
+  clientProfile    ClientProfile?
+  jobSeekerProfile JobSeekerProfile?
+}
+
+model EmployeeProfile {
+  id           String         @id @default(cuid())
+  userId       String         @unique
+  user         User           @relation(fields: [userId], references: [id])
+  department   String
+  position     String
+  
+  tasks        Task[]
+  attendance   Attendance[]
+  leaveRequests LeaveRequest[]
+}
+
+model ClientProfile {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  user         User      @relation(fields: [userId], references: [id])
+  companyName  String
+  industry     String?
+  
+  projects     Project[]
+}
+
+model JobSeekerProfile {
+  id           String           @id @default(cuid())
+  userId       String           @unique
+  user         User             @relation(fields: [userId], references: [id])
+  
+  applications JobApplication[]
+}
+
+model Project {
+  id             String        @id @default(cuid())
+  name           String
+  clientId       String
+  client         ClientProfile @relation(fields: [clientId], references: [id])
+  status         ProjectStatus @default(PLANNING)
+  startDate      DateTime
+  endDate        DateTime?
+  budget         Float?
+  
+  // AI Training Data Fields (Phase 3 Prep)
+  actualCost     Float?
+  manpowerCount  Int?
+  equipmentUsed  Json?         // Stores array of equipment types
+  materialsUsed  Json?
+  delayDays      Int?          @default(0)
+  riskFactors    Json?
+
+  tasks          Task[]
+  documents      Document[]
+  
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model Task {
+  id          String          @id @default(cuid())
+  title       String
+  description String?         @db.Text
+  projectId   String
+  project     Project         @relation(fields: [projectId], references: [id])
+  assignedTo  String?
+  employee    EmployeeProfile? @relation(fields: [assignedTo], references: [id])
+  status      TaskStatus      @default(PENDING)
+  dueDate     DateTime?
+}
+
+model Attendance {
+  id          String          @id @default(cuid())
+  employeeId  String
+  employee    EmployeeProfile @relation(fields: [employeeId], references: [id])
+  date        DateTime        @db.Date
+  status      AttendanceStatus
+}
+
+model LeaveRequest {
+  id          String          @id @default(cuid())
+  employeeId  String
+  employee    EmployeeProfile @relation(fields: [employeeId], references: [id])
+  startDate   DateTime        @db.Date
+  endDate     DateTime        @db.Date
+  reason      String
+  status      LeaveStatus     @default(PENDING)
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  name        String
+  fileUrl     String
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id])
+  uploadedBy  String   // User ID
+  createdAt   DateTime @default(now())
+}
+
+// Enums
+enum InquiryStatus { 
+  NEW 
+  REVIEWED 
+  REPLIED 
+  CLOSED 
+}
+
+enum ApplicationStatus { 
+  RECEIVED 
+  SHORTLISTED 
+  REJECTED 
+  HIRED 
+}
+
+enum JobType { 
+  FULL_TIME 
+  CONTRACT 
+  PROJECT_BASED 
+}
+
+enum ProjectStatus { 
+  PLANNING 
+  IN_PROGRESS 
+  COMPLETED 
+  ON_HOLD 
+}
+
+enum TaskStatus { 
+  PENDING 
+  IN_PROGRESS 
+  COMPLETED 
+}
+
+enum AttendanceStatus { 
+  PRESENT 
+  ABSENT 
+  HALF_DAY 
+  LEAVE 
+}
+
+enum LeaveStatus { 
+  PENDING 
+  APPROVED 
+  REJECTED 
+}
