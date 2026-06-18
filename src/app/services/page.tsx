@@ -63,7 +63,7 @@ const ServiceBackgroundEffect = ({ iconName, isHovered }: { iconName: string; is
   if (videoSrc) {
     return (
       <div className={`absolute inset-0 overflow-hidden rounded-[var(--radius-card)] pointer-events-none transition-opacity duration-500 z-0 ${shouldPlay ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-0 bg-[var(--color-obsidian)]/60 transition-colors duration-500 z-10" />
+        <div className="absolute inset-0 bg-black/60 transition-colors duration-500 z-10" />
         {shouldPlay && (
           <video
             autoPlay
@@ -76,13 +76,13 @@ const ServiceBackgroundEffect = ({ iconName, isHovered }: { iconName: string; is
             <source src={videoSrc} type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-obsidian)]/80 via-[var(--color-obsidian)]/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/90 via-[#0a1128]/40 to-transparent z-10" />
       </div>
     )
   }
 
   return (
-    <div className={`absolute inset-0 overflow-hidden rounded-[var(--radius-card)] pointer-events-none transition-opacity duration-700 z-0 bg-[var(--color-obsidian)] ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`absolute inset-0 overflow-hidden rounded-[var(--radius-card)] pointer-events-none transition-opacity duration-700 z-0 bg-[#0a1128] ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
       <motion.div 
         animate={{ backgroundPosition: ["0px 0px", "60px 60px"] }}
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -92,7 +92,7 @@ const ServiceBackgroundEffect = ({ iconName, isHovered }: { iconName: string; is
           backgroundSize: '60px 60px'
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-obsidian)] via-transparent to-[var(--color-obsidian)] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-transparent to-[#0a1128] opacity-90" />
     </div>
   )
 }
