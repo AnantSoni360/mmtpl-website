@@ -1,4 +1,4 @@
-﻿export const projects = [
+export const projects = [
   // INDIA PROJECTS
   {
     id: 'ind-1',
@@ -45,7 +45,7 @@
     value: '₹ 24.06 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture50.jpg',
+    image: '/project-gallery/Equipment Installation & Commissioning/Picture46.jpg',
     description: 'Steel Melt Shop (SMS-3) structural and mechanical works.',
   },
   {
@@ -81,7 +81,7 @@
     value: '₹ 58.92 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture44.jpg',
+    image: '/project-gallery/Equipment Installation & Commissioning/Picture45.jpg',
     description: 'Comprehensive Caster Works at Angul.',
   },
   {
@@ -117,7 +117,7 @@
     value: '₹ 3.54 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture38.jpg',
+    image: '/project-gallery/Structural Fabrication & Erection/Picture34.jpg',
     description: 'Structural fabrication work at SSD (9,400 MT).',
   },
   {
@@ -165,7 +165,7 @@
     value: '₹ 30.68 Cr',
     status: 'Running',
     category: 'India',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture41.jpg',
+    image: '/project-gallery/Equipment Installation & Commissioning/Picture40.jpg',
     description: 'Ongoing Mechanical Erection of 12,000 MT for Coke Oven project.',
   },
 
@@ -336,7 +336,7 @@
     year: '—',
     status: 'Completed',
     category: 'Overseas',
-    image: '/project-gallery/Structural Erection for/Picture22.jpg',
+    image: '/project-gallery/Structural Fabrication & Erection/Picture35.jpg',
     description: 'Refractory Installation Works for 600 TPD Lime Calcination Plant.',
   },
   {
@@ -349,7 +349,7 @@
     year: '—',
     status: 'Completed',
     category: 'Overseas',
-    image: '/project-gallery/Supply and Installation of Sheeting/Picture64.jpg',
+    image: '/project-gallery/Civil Structures & Industrial Buildings/Picture31.jpg',
     description: 'Refractory Installation Works for 600 TPD Lime Calcination Plant.',
   },
   {
@@ -362,7 +362,7 @@
     year: '—',
     status: 'Completed',
     category: 'Overseas',
-    image: '/project-gallery/Plant Operation & Maintenance/Picture75.jpg',
+    image: '/project-gallery/Civil Structures & Industrial Buildings/Picture32.jpg',
     description: 'Refractory Installation Works for 2 MTPA Steel Melt Shop comprising Electric Arc Furnace (EAF), Ladle Furnace (LF), Ladles, and Tundish.',
   },
   {
@@ -442,7 +442,7 @@
     year: '2004-2005',
     status: 'Completed',
     category: 'Coke Oven',
-    image: '/project-gallery/SMIORE – COKE OVEN/Picture12.jpg',
+    image: '/project-gallery/SMIORE – COKE OVEN/Picture13.jpg',
     description: 'Early non-recovery coke oven execution.',
   },
   {
@@ -468,7 +468,7 @@
     year: '2014',
     status: 'Completed',
     category: 'Coke Oven',
-    image: '/project-gallery/Equipment Installation & Commissioning/Picture47.jpg',
+    image: '/project-gallery/SMIORE – COKE OVEN/Picture14.jpg',
     description: 'Coke ovens execution for Gerdau Steel.',
   },
 
@@ -509,7 +509,7 @@
     year: '2015-2016',
     status: 'Completed',
     category: 'Blast Furnace',
-    image: '/project-gallery/Utility Piping/Picture57.jpg',
+    image: '/project-gallery/Utility Piping/Picture56.jpg',
     description: 'Refractory works for Blast Furnace-1 stove.',
   },
   {
@@ -535,7 +535,7 @@
     year: '2015-2016',
     status: 'Completed',
     category: 'Blast Furnace',
-    image: '/project-gallery/Refractory Supply, Installation & Maintenance/Picture59.jpg',
+    image: '/project-gallery/Civil Structures & Industrial Buildings/Picture29.jpg',
     description: 'Stove operations at JSW Dolvi.',
   },
   {
@@ -626,7 +626,7 @@
     year: '2010-2015',
     status: 'Completed',
     category: 'Blast Furnace',
-    image: '/project-gallery/Plant Operation & Maintenance/Picture74.jpg',
+    image: '/project-gallery/Structural Erection for/Picture18.jpg',
     description: 'Construction and execution of WRM / BRM facilities.',
   },
   
