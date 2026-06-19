@@ -46,25 +46,9 @@ const DATA = {
 };
 
 function AnimatedCounter({ value, prefix = "", suffix = "", isVisible }: { value: number, prefix?: string, suffix?: string, isVisible: boolean }) {
-  const nodeRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    if (!isVisible || !nodeRef.current) return;
-    
-    const node = nodeRef.current;
-    
-    const controls = animate(0, value, {
-      duration: 1.5,
-      ease: "easeOut",
-      onUpdate(v) {
-        node.textContent = `${prefix}${v.toFixed(value % 1 === 0 ? 0 : 2)}${suffix}`;
-      },
-    });
-
-    return () => controls.stop();
-  }, [value, prefix, suffix, isVisible]);
-
-  return <span ref={nodeRef}>{prefix}0{suffix}</span>;
+  if (!isVisible) return null;
+  const formatted = value % 1 === 0 ? value.toString() : value.toFixed(2);
+  return <span>{prefix}{formatted}{suffix}</span>;
 }
 
 export function GrowthMountain() {

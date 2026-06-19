@@ -9,7 +9,7 @@ export const projects = [
     value: '₹ 8.59 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/Supply and Installation of Sheeting/Picture66.jpg',
+    image: '/project-gallery/Refractory Supply, Installation & Maintenance/Picture61.jpg',
     description: 'Refractory erection for JSW facilities in Bellary, Karnataka.',
   },
   {
@@ -69,7 +69,7 @@ export const projects = [
     value: '₹ 12.69 Cr',
     status: 'Done',
     category: 'India',
-    image: '/project-gallery/SMIORE – COKE OVEN/Picture4.jpg',
+    image: '/project-gallery/Plant Operation & Maintenance/Picture76.jpg',
     description: 'Pellet Plant mechanical and erection operations.',
   },
   {

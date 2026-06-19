@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, MapPin, Phone, ArrowRight } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
+import { NewsletterForm } from '@/components/sections/NewsletterForm'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -22,16 +23,7 @@ export function Footer() {
               Subscribe to our newsletter for the latest updates on our industrial projects, technological advancements, and company news.
             </p>
           </div>
-          <div className="w-full lg:w-auto flex flex-col sm:flex-row items-center gap-3">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="bg-white/5 border border-white/10 text-white placeholder:text-white/40 px-6 py-3.5 rounded-full focus:outline-none focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6] transition-all w-full sm:w-[300px] font-switzer text-sm"
-            />
-            <button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white px-8 py-3.5 rounded-full font-semibold font-switzer text-sm transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] flex items-center justify-center gap-2 group whitespace-nowrap w-full sm:w-auto">
-              Subscribe <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+          <NewsletterForm />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
@@ -55,13 +47,13 @@ export function Footer() {
               Man Machine Technocrats Pvt. Ltd. Building the future with precision, safety, and excellence. Leading turnkey contracting organization delivering comprehensive solutions across core sectors.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
+              <a href="https://linkedin.com/company/mmtpl" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
+              <a href="https://twitter.com/mmtpl" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
+              <a href="https://instagram.com/mmtpl" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#3b82f6] hover:text-white hover:-translate-y-1 transition-all border border-white/10 shadow-sm">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
               </a>
             </div>

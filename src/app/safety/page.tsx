@@ -221,6 +221,49 @@ export default function Safety() {
         </div>
       </section>
 
+      {/* ── CERTIFICATIONS & POLICY ── */}
+      <section className="container mx-auto px-6 max-w-[var(--page-max-width)] mb-24">
+        <div className="bg-white dark:bg-[#162033] border border-silver dark:border-white/10 rounded-3xl p-10 md:p-16 text-center flex flex-col items-center">
+          <FadeUp>
+            <TagPill variant="bone" className="mb-6">Compliance & Standards</TagPill>
+            <h2 className="display text-obsidian mb-8">Certified for Excellence</h2>
+          </FadeUp>
+          
+          <FadeUp delay={0.1} className="w-full flex flex-col md:flex-row items-center justify-center gap-12 mt-8">
+            <div className="flex flex-col items-center max-w-sm">
+              <div className="w-48 h-64 border-2 border-dashed border-emerald-500 rounded-xl flex flex-col items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 mb-6 relative hover:scale-105 transition-transform duration-300 shadow-md">
+                <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-4" />
+                <span className="font-editorial text-2xl text-emerald-700 dark:text-emerald-400">ISO 45001:2018</span>
+                <span className="text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-500 mt-2">Certified</span>
+              </div>
+              <p className="text-sm text-graphite font-switzer text-center">
+                Our Occupational Health and Safety Management System is certified to ISO 45001:2018 standards.
+              </p>
+            </div>
+
+            <div className="hidden md:block w-px h-48 bg-silver dark:bg-white/10" />
+
+            <div className="flex flex-col items-center max-w-sm">
+              <div className="w-20 h-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-6">
+                <FileCheck2 className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="font-editorial text-2xl text-obsidian mb-4">HSE Policy Document</h3>
+              <p className="text-sm text-graphite font-switzer text-center mb-8">
+                Download our comprehensive Health, Safety, and Environment policy document outlining our strict procedures and protocols.
+              </p>
+              <a href="/HSE_Policy_MMTPL.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-obsidian text-white px-8 py-3.5 rounded-full font-switzer font-semibold text-sm hover:bg-gray-800 transition-colors shadow-lg">
+                Download Policy PDF
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" x2="12" y1="15" y2="3" />
+                </svg>
+              </a>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
     </div>
   )
 }

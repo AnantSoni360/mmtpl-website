@@ -34,8 +34,8 @@ export default function Clients() {
     { name: 'Zuari Cement', logo: '/clients-logo/Zuari Cement.png', description: 'Part of the HeidelbergCement Group, Zuari Cement is a leading cement manufacturer in South India with a capacity of 7.1 MTPA.' },
     { name: 'Aditya Birla Group', logo: '/clients-logo/Aditya Birla Group.png', description: 'A global conglomerate and the parent company of UltraTech Cement, the largest manufacturer of grey cement and ready mix concrete in India.' },
     { name: 'Orient Cement', logo: '/clients-logo/orient cement ck birla group.png', description: 'Part of the CK Birla Group, Orient Cement is known for producing premium grade cement for critical infrastructure projects.' },
-    { name: 'Deccan Cements', logo: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=300&auto=format&fit=crop', description: 'A pioneer in the Indian cement industry, Deccan Cements operates a specialized plant in Telangana producing high-strength cement.' },
-    { name: 'Parasakthi Cements', logo: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=300&auto=format&fit=crop', description: 'A high-quality cement producer based in Andhra Pradesh, serving the growing infrastructure needs of Southern India.' },
+    { name: 'Deccan Cements', logo: '', description: 'A pioneer in the Indian cement industry, Deccan Cements operates a specialized plant in Telangana producing high-strength cement.' },
+    { name: 'Parasakthi Cements', logo: '', description: 'A high-quality cement producer based in Andhra Pradesh, serving the growing infrastructure needs of Southern India.' },
   ]
 
   const epcPartners = [
@@ -79,15 +79,19 @@ export default function Clients() {
               onMouseLeave={() => setHoveredClient(null)}
             >
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity z-0" />
-              <div className="relative w-full h-1/2 mb-4 z-10">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  fill
-                  className="object-contain transition-all duration-300 group-hover:scale-110"
-                />
+              <div className="relative w-full h-1/2 mb-4 z-10 flex items-center justify-center">
+                {client.logo ? (
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    fill
+                    className="object-contain transition-all duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="text-xl font-bold text-[var(--color-silver)] tracking-wider uppercase text-center px-2">{client.name}</div>
+                )}
               </div>
-              <span className="font-switzer font-medium text-sm text-center text-[var(--color-graphite)] z-10">{client.name}</span>
+              <span className="font-switzer font-medium text-sm text-center text-[var(--color-graphite)] z-10">{client.logo ? client.name : ''}</span>
             </div>
           ))}
         </div>
@@ -138,14 +142,20 @@ export default function Clients() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 bg-[var(--color-paper)] p-12 rounded-[var(--radius-card-lg)] w-[90vw] max-w-[1000px] shadow-2xl flex flex-col items-center text-center"
             >
-              <div className="relative w-full h-[250px] mb-8">
-                <Image 
-                  src={hoveredClient.logo} 
-                  fill 
-                  className="object-contain drop-shadow-lg" 
-                  alt={hoveredClient.name} 
-                />
-              </div>
+              {hoveredClient.logo ? (
+                <div className="relative w-full h-[250px] mb-8">
+                  <Image 
+                    src={hoveredClient.logo} 
+                    fill 
+                    className="object-contain drop-shadow-lg" 
+                    alt={hoveredClient.name} 
+                  />
+                </div>
+              ) : (
+                <div className="relative w-full h-[150px] mb-8 flex items-center justify-center border-2 border-dashed border-[var(--color-silver)] rounded-2xl">
+                  <span className="text-3xl font-bold text-[var(--color-silver)] uppercase tracking-widest">{hoveredClient.name}</span>
+                </div>
+              )}
               <motion.h2 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

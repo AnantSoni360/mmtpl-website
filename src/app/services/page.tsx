@@ -287,9 +287,20 @@ export default function Services() {
                       </div>
                     </div>
                     {service.category && (
-                      <TagPill variant={service.category === 'Core' ? 'paper' : service.category === 'Long-term' ? 'lilac' : 'bone'} className="text-xs group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white transition-colors duration-500">
-                        {service.category}
-                      </TagPill>
+                      <div className="flex flex-col gap-2 items-end">
+                        <TagPill variant={service.category === 'Core' ? 'paper' : service.category === 'Long-term' ? 'lilac' : 'bone'} className="text-xs group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white transition-colors duration-500">
+                          {service.category}
+                        </TagPill>
+                        {service.industries && (
+                           <div className="flex gap-1.5 flex-wrap justify-end max-w-[150px]">
+                             {service.industries.map(ind => (
+                               <span key={ind} className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-sm bg-[var(--color-silver)]/30 text-[var(--color-slate)] group-hover:bg-white/10 group-hover:text-white/80 transition-colors duration-500">
+                                 {ind}
+                               </span>
+                             ))}
+                           </div>
+                        )}
+                      </div>
                     )}
                   </div>
                   <h3 className="subheading text-[var(--color-obsidian)] mb-4 group-hover:text-white transition-colors duration-500">

@@ -61,6 +61,30 @@ function useWindowResize(callback: () => void) {
     }
   }, [callback])
 }
+const getInitials = (name: string) => {
+  return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+}
+
+// Deterministic color palette for initials avatars — consistent per person
+const AVATAR_COLORS = [
+  { bg: '#1e3a5f', text: '#60a5fa' }, // blue
+  { bg: '#2d1b69', text: '#a78bfa' }, // purple
+  { bg: '#0d3b2e', text: '#34d399' }, // emerald
+  { bg: '#1a3a2a', text: '#4ade80' }, // green
+  { bg: '#3b1a1a', text: '#f87171' }, // red
+  { bg: '#1a2e3b', text: '#38bdf8' }, // sky
+  { bg: '#2e1a3b', text: '#c084fc' }, // violet
+  { bg: '#3b2a1a', text: '#fb923c' }, // orange
+  { bg: '#1a3b3b', text: '#2dd4bf' }, // teal
+  { bg: '#2a2a3b', text: '#818cf8' }, // indigo
+]
+
+const getAvatarColor = (name: string) => {
+  let hash = 0
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash)
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length]
+}
+
 const LeaderCard = ({ leader, refCb, delay = 0, variant = "dark", onClick }: { leader: Leader, refCb: React.Ref<HTMLDivElement>, delay?: number, variant?: "dark" | "light", onClick: () => void }) => {
   const isDark = variant === "dark"
   return (
@@ -85,15 +109,25 @@ const LeaderCard = ({ leader, refCb, delay = 0, variant = "dark", onClick }: { l
         `}
       >
         <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 rounded-2xl transition-colors duration-300 -z-10" />
-        <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-[#3b82f6] transition-colors duration-300 shadow-inner">
-          <Image 
-            src={leader.photo} 
-            alt={leader.name} 
-            width={80} 
-            height={80} 
-            loading="lazy"
-            className="object-cover w-full h-full"
-          />
+        <div 
+          className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-3 border-2 border-transparent group-hover:border-[#3b82f6] transition-colors duration-300 shadow-inner flex items-center justify-center"
+          style={{ backgroundColor: leader.photo === '/logo.png' ? getAvatarColor(leader.name).bg : '#1e293b' }}
+        >
+          {leader.photo === '/logo.png' ? (
+            <span 
+              className="text-xl md:text-2xl font-bold tracking-widest"
+              style={{ color: getAvatarColor(leader.name).text }}
+            >{getInitials(leader.name)}</span>
+          ) : (
+            <Image 
+              src={leader.photo} 
+              alt={leader.name} 
+              width={80} 
+              height={80} 
+              loading="lazy"
+              className="object-cover w-full h-full"
+            />
+          )}
         </div>
         <h3 className={`font-switzer font-bold text-center text-[13px] md:text-sm leading-tight mb-1 group-hover:text-[#3b82f6] transition-colors`}>
           {leader.name}
@@ -267,13 +301,23 @@ export function InteractiveLeadershipNetwork() {
                 <X size={18} className="text-[var(--color-obsidian)]" />
               </button>
               {/* Photo Section */}
-              <div className="w-full md:w-2/5 h-64 md:h-auto relative bg-[var(--color-bone)]">
-                <Image 
-                  src={selectedLeader.photo} 
-                  alt={selectedLeader.name} 
-                  fill 
-                  className="object-cover"
-                />
+              <div 
+                className="w-full md:w-2/5 h-64 md:h-auto relative flex items-center justify-center"
+                style={{ backgroundColor: selectedLeader.photo === '/logo.png' ? getAvatarColor(selectedLeader.name).bg : '#1e293b' }}
+              >
+                {selectedLeader.photo === '/logo.png' ? (
+                  <span 
+                    className="text-6xl font-bold tracking-widest"
+                    style={{ color: getAvatarColor(selectedLeader.name).text }}
+                  >{getInitials(selectedLeader.name)}</span>
+                ) : (
+                  <Image 
+                    src={selectedLeader.photo} 
+                    alt={selectedLeader.name} 
+                    fill 
+                    className="object-cover"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden" />
               </div>
               {/* Details Section */}

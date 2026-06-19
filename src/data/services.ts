@@ -6,6 +6,7 @@ export const services = [
     description: 'Primary specialty — coke ovens, blast furnaces, lime calcination plants, pellet plants, sinter plants, reheating furnaces, EAF, ladle lining, tundish. Managed 1.2 lakh tonnes in one year.',
     icon: 'Flame',
     category: 'Core',
+    industries: ['Steel', 'Cement', 'Chemical'],
   },
   {
     id: 'structural-fabrication',
@@ -14,6 +15,7 @@ export const services = [
     description: 'Building structures, technological structures, conveyor galleries, pipe racks, bunker buildings, SMS buildings. Projects up to 6,500 MT steel erected at single location.',
     icon: 'Hammer',
     category: 'Core',
+    industries: ['Steel', 'Power', 'Mining'],
   },
   {
     id: 'equipment-installation',
@@ -22,6 +24,7 @@ export const services = [
     description: 'Blast furnaces, casters, rolling mills, EAF, ladle furnaces, EOT cranes (up to 280T), rotary dryers, ball mills, balling discs, compressors. Hot commissioning capability.',
     icon: 'Factory',
     category: 'Core',
+    industries: ['Steel', 'Cement', 'Power'],
   },
   {
     id: 'civil-structures',
@@ -30,6 +33,7 @@ export const services = [
     description: 'Control rooms, equipment foundations, reinforced cement concrete, earthwork, formwork. Full civil-to-commissioning turnkey capability demonstrated at Carmeuse, Oman.',
     icon: 'Building2',
     category: 'Discipline',
+    industries: ['Infrastructure', 'Mining', 'Cement'],
   },
   {
     id: 'utility-piping',
@@ -38,6 +42,7 @@ export const services = [
     description: 'Water, gas, hydraulic, lubrication piping. Mould cooling, machine cooling, spray cooling. Projects up to 100,000 inch-meters. Raw water pipelines to 1,200mm dia.',
     icon: 'Waves',
     category: 'Discipline',
+    industries: ['Steel', 'Chemical', 'Power'],
   },
   {
     id: 'electrical-instrumentation',
@@ -46,6 +51,7 @@ export const services = [
     description: 'HT/LT cabling, power distribution panels, cable trays, control systems. 250 km of power & control cables for single project (Jindal Shadeed Caster-2). Added 2017.',
     icon: 'Zap',
     category: 'Discipline',
+    industries: ['Power', 'Steel', 'Cement'],
   },
   {
     id: 'plant-operations',
@@ -54,6 +60,7 @@ export const services = [
     description: 'Long-term O&M contracts — 2 MTPA Steel Melt Shop, 1.4 MTPA Rolling Mill, Fume Treatment Plant at Jindal Shadeed since 2016. Also SABIC Saudi Arabia 5-year contract.',
     icon: 'Wrench',
     category: 'Long-term',
+    industries: ['Steel', 'Chemical', 'Power'],
   },
   {
     id: 'thermal-insulation',
@@ -62,6 +69,7 @@ export const services = [
     description: 'Rockwool insulation on steam lines and industrial piping. Demonstrated at Jindal Shadeed Caster-2, Oman.',
     icon: 'Thermometer',
     category: 'Discipline',
+    industries: ['Power', 'Chemical', 'Steel'],
   },
   {
     id: 'sheeting',
@@ -70,6 +78,7 @@ export const services = [
     description: 'Roof and side cladding for industrial buildings. 55,000 sqm at single project (SMS building, MISCO Oman) at elevation +53 metres.',
     icon: 'Layers',
     category: 'Discipline',
+    industries: ['Infrastructure', 'Mining', 'Cement'],
   },
   {
     id: 'design-engineering',
@@ -78,6 +87,7 @@ export const services = [
     description: 'In-house design capability for building structures (demonstrated: scrap storage building design per MECON specs). Full engineering on EPC contracts.',
     icon: 'PenTool',
     category: 'Discipline',
+    industries: ['Infrastructure', 'Steel', 'Power'],
   },
   {
     id: 'pre-engineering-sheds',
@@ -86,5 +96,6 @@ export const services = [
     description: 'Pre-engineered building structures for industrial applications, workshops, and plant auxiliary buildings.',
     icon: 'Warehouse',
     category: 'Discipline',
+    industries: ['Infrastructure', 'Mining', 'Cement'],
   },
 ]

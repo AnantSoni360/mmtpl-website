@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { jobs } from '@/data/jobs'
 import { UploadDropzone } from '@/components/uploadthing'
-import { Briefcase, MapPin, Clock } from 'lucide-react'
+import { Briefcase, MapPin, Upload, AlertCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function Careers() {
@@ -22,6 +22,8 @@ export default function Careers() {
   const [resumeUrl, setResumeUrl] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [uploadError, setUploadError] = useState(false)
+  const [nativeFile, setNativeFile] = useState<File | null>(null)
 
   const {
     register,
@@ -224,8 +226,32 @@ export default function Careers() {
                   {/* Uploadthing Dropzone Placeholder */}
                   {resumeUrl ? (
                     <div className="p-4 border border-emerald-500/30 bg-emerald-500/10 rounded-xl text-emerald-700 dark:text-emerald-400 font-switzer text-sm flex items-center justify-between">
-                      <span>Resume Uploaded Successfully!</span>
-                      <button type="button" onClick={() => setResumeUrl('')} className="underline text-sm hover:text-red-500 transition-colors">Remove</button>
+                      <span className="flex items-center gap-2"><Upload size={16} /> Resume uploaded successfully!</span>
+                      <button type="button" onClick={() => { setResumeUrl(''); setNativeFile(null); setUploadError(false) }} className="underline text-sm hover:text-red-500 transition-colors">Remove</button>
+                    </div>
+                  ) : uploadError ? (
+                    /* Fallback: native file input when uploadthing fails */
+                    <div className="border border-dashed border-amber-400/60 bg-amber-50/50 dark:bg-amber-900/10 rounded-xl p-6">
+                      <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 text-sm font-switzer font-medium mb-4">
+                        <AlertCircle size={16} />
+                        Cloud upload unavailable — please attach your resume below.
+                      </div>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        className="block w-full text-sm text-graphite dark:text-gray-300 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-obsidian file:text-white hover:file:bg-graphite transition-all font-switzer"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0]
+                          if (file) {
+                            setNativeFile(file)
+                            // Use file name as placeholder URL for validation
+                            setResumeUrl(`local:${file.name}`)
+                          }
+                        }}
+                      />
+                      {nativeFile && (
+                        <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 font-switzer">Selected: {nativeFile.name}</p>
+                      )}
                     </div>
                   ) : (
                     <UploadDropzone
@@ -233,13 +259,15 @@ export default function Careers() {
                       onClientUploadComplete={(res) => {
                         if (res?.[0]) {
                           setResumeUrl(res[0].url)
+                          setUploadError(false)
                         }
                       }}
                       onUploadError={(error: Error) => {
-                        alert(`ERROR! ${error.message}`)
+                        console.error('Upload error:', error.message)
+                        setUploadError(true)
                       }}
                       appearance={{
-                        container: 'border border-dashed border-silver dark:border-white/30 bg-bone/50 dark:bg-obsidian/50 rounded-xl p-8 transition-colors hover:border-obsidian dark:hover:border-white/60',
+                        container: 'border border-dashed border-silver dark:border-white/30 bg-bone/50 dark:bg-obsidian/50 rounded-xl p-8 transition-colors hover:border-obsidian dark:hover:border-white/60 ut-uploading:opacity-70',
                         button: 'bg-obsidian dark:bg-lilac-bloom text-white !text-white font-switzer font-medium px-6 py-2.5 rounded-lg mt-4 cursor-pointer transition-colors text-sm',
                         label: 'font-switzer text-obsidian dark:text-gray-200 text-sm font-medium',
                         allowedContent: 'font-switzer text-graphite dark:text-gray-400 text-xs mt-1',

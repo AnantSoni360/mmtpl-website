@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useInView, useMotionValue, useSpring } from 'framer-motion'
+import { useInView, animate } from 'framer-motion'
 
 export function AnimatedCounter({ 
   value, 
@@ -15,34 +15,25 @@ export function AnimatedCounter({
   suffix?: string
 }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, {
-    damping: 50,
-    stiffness: 100
-  })
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value)
-    }
-  }, [motionValue, isInView, value])
-
-  useEffect(() => {
-    return springValue.on("change", (latest) => {
-      if (ref.current) {
-        // Format with correct decimal places
-        let formatted = latest.toFixed(decimals)
-        
-        // Add commas for large numbers if no decimals are used
-        if (decimals === 0) {
-            formatted = Intl.NumberFormat('en-US').format(Math.round(latest))
+    if (isInView && ref.current) {
+      const node = ref.current
+      const controls = animate(0, value, {
+        duration: 2,
+        ease: "easeOut",
+        onUpdate(v) {
+          let formatted = v.toFixed(decimals)
+          if (decimals === 0) {
+            formatted = Intl.NumberFormat('en-US').format(Math.round(v))
+          }
+          node.textContent = `${prefix}${formatted}${suffix}`
         }
-        
-        ref.current.textContent = `${prefix}${formatted}${suffix}`
-      }
-    })
-  }, [springValue, prefix, suffix, decimals])
+      })
+      return () => controls.stop()
+    }
+  }, [isInView, value, prefix, suffix, decimals])
 
   return <span ref={ref}>{prefix}0{suffix}</span>
 }

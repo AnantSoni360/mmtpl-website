@@ -165,6 +165,30 @@ export function AchievementCommandCenter() {
             </div>
           </motion.div>
         </div>
+
+        {/* Certifications Section */}
+        <div className="mt-32 border-t border-[var(--color-silver)] pt-16 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="heading-sm text-[var(--color-obsidian)] mb-12 uppercase tracking-widest">
+              Certifications & Quality Standards
+            </h2>
+            
+            <div className="flex flex-wrap justify-center gap-8 items-center">
+              {[
+                { title: 'ISO 9001:2015', desc: 'Quality Management System' },
+                { title: 'ISO 45001:2018', desc: 'Occupational Health and Safety' },
+              ].map((cert, i) => (
+                <div key={i} className="flex flex-col items-center justify-center relative w-64 h-80 rounded-xl overflow-hidden shadow-lg border border-[var(--color-silver)] hover:scale-105 transition-transform duration-300 bg-white p-6">
+                  <div className="w-24 h-24 border-4 border-emerald-500 rounded-full flex items-center justify-center mb-6 text-emerald-600">
+                    <CheckCircle2 size={48} />
+                  </div>
+                  <h3 className="font-editorial text-2xl text-[var(--color-obsidian)] mb-2">{cert.title}</h3>
+                  <p className="font-switzer text-sm text-[var(--color-slate)] uppercase tracking-widest">{cert.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
         
       </div>
     </section>
