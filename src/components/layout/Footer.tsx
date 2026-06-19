@@ -105,7 +105,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 group cursor-pointer">
                 <Phone size={18} className="text-[#3b82f6] mt-0.5 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">+91 (022) 2850 0000</span>
+                <span className="group-hover:text-white transition-colors">+91 9008038052</span>
               </li>
               <li className="flex items-start gap-3 group cursor-pointer">
                 <MapPin size={18} className="text-[#3b82f6] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />

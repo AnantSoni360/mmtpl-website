@@ -23,7 +23,7 @@ export default function Contact() {
   const contacts = [
     {
       title: 'Call Us',
-      detail: '+91 (022) 2850 0000', // Placeholder
+      detail: '+91 9008038052',
       desc: 'Mon-Sat from 9am to 6pm.',
       icon: <Phone className="w-6 h-6 text-obsidian dark:text-white" />,
     },
@@ -143,7 +143,7 @@ export default function Contact() {
                       type="tel" 
                       id="phone" 
                       className="w-full px-4 py-3 rounded-[var(--radius-control)] border border-silver dark:border-white/20 bg-bone dark:bg-[#162033] focus:bg-white dark:bg-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-obsidian dark:ring-white/50 transition-all text-obsidian dark:text-white placeholder:text-slate dark:text-gray-400"
-                      placeholder="+91 (000) 000-0000"
+                      placeholder="+91 9008038052"
                     />
                   </div>
 

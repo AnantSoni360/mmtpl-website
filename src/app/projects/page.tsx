@@ -5,7 +5,6 @@ import { TagPill } from '@/components/ui/TagPill'
 import { FadeUp } from '@/components/motion/FadeUp'
 import { projects } from '@/data/projects'
 import { cn } from '@/lib/utils'
-import { InteractiveProjectExplorer } from '@/components/sections/InteractiveProjectExplorer'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 
@@ -138,8 +137,8 @@ export default function Projects() {
         )}
       </section>
 
-      {/* ── INTERACTIVE PROJECT EXPLORER ── */}
-      <InteractiveProjectExplorer />
+
+
 
       {/* ── LONG-TERM MAINTENANCE EXPERIENCE ── */}
       <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
