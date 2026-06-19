@@ -113,7 +113,7 @@ export function InteractiveLeadershipNetwork() {
   const gmRefs = useRef<(HTMLDivElement | null)[]>([])
   const keyRefs = useRef<(HTMLDivElement | null)[]>([])
   const [lines, setLines] = useState<ConnectionLine[]>([])
-  const calculateLines = () => {
+  const calculateLines = React.useCallback(() => {
     if (!containerRef.current || !mdRef.current) return
     const containerRect = containerRef.current.getBoundingClientRect()
     const getCenter = (el: HTMLDivElement | null) => {
@@ -160,7 +160,7 @@ export function InteractiveLeadershipNetwork() {
       }
     })
     setLines(newLines)
-  }
+  }, [])
   useWindowResize(calculateLines)
   return (
     <div className="relative w-full py-16" ref={containerRef}>
