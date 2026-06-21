@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import { galleryProjects, GalleryProject } from "@/data/galleryData";
 import { TagPill } from "@/components/ui/TagPill";
-import { X, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Maximize2, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 type PhysicsState = {
   id: string;
@@ -22,9 +22,11 @@ export function InteractiveProjectExplorer() {
   const [lightboxImageIndex, setLightboxImageIndex] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [speedMode, setSpeedMode] = useState<'slow' | 'medium' | 'natural'>('natural');
+  const [manualPause, setManualPause] = useState(true);
 
   // Physics Refs
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "200px" });
   const spheresRef = useRef<(HTMLDivElement | null)[]>([]);
   const physicsState = useRef<PhysicsState[]>([]);
   const animationRef = useRef<number>(0);
@@ -148,10 +150,10 @@ export function InteractiveProjectExplorer() {
     return () => cancelAnimationFrame(animationRef.current);
   }, []); // Empty dependency array so loop never restarts!
 
-  // Pause physics when gallery is open
+  // Pause physics when gallery is open or when scrolled out of view or manually paused
   useEffect(() => {
-    isPaused.current = !!openProject;
-  }, [openProject]);
+    isPaused.current = !!openProject || !isInView || manualPause;
+  }, [openProject, isInView, manualPause]);
 
   // Handle Keyboard
   useEffect(() => {
@@ -241,7 +243,21 @@ export function InteractiveProjectExplorer() {
       </div>
 
       {/* 2D Physics Bounds Container */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden group">
+        {/* Overlay Play/Pause Button */}
+        <div className={`absolute inset-0 z-40 flex items-center justify-center pointer-events-none transition-opacity duration-500 ${manualPause ? 'bg-black/5' : ''}`}>
+          <button
+            onClick={() => setManualPause(!manualPause)}
+            className={`pointer-events-auto w-28 h-28 flex items-center justify-center rounded-full transition-all duration-300 backdrop-blur-md shadow-[0_0_50px_rgba(0,0,0,0.3)] border-[3px] hover:scale-110 ${
+              manualPause 
+                ? 'bg-black/60 text-white border-white/30 hover:bg-[#3b82f6] hover:border-[#3b82f6] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)]' 
+                : 'bg-black/30 text-white border-transparent hover:bg-black/70 opacity-0 group-hover:opacity-100 hover:border-white/20'
+            }`}
+          >
+            {manualPause ? <Play size={56} className="ml-3 text-white" /> : <Pause size={56} className="text-white" />}
+          </button>
+        </div>
+
         <div 
           ref={containerRef} 
           className="relative w-full h-[600px] border-y border-[var(--color-silver)] bg-[var(--color-bone)]/50 shadow-inner"

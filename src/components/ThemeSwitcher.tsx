@@ -31,7 +31,7 @@ export function ThemeSwitcher() {
       variant="ghost"
       size="sm"
       onClick={cycleTheme}
-      className="w-9 px-0 transition-colors text-white hover:text-white md:text-inherit"
+      className="w-9 px-0 transition-colors text-[var(--color-obsidian)] dark:text-white hover:text-[#3b82f6] dark:hover:text-[#3b82f6]"
       title={`Current theme: ${theme}. Click to cycle.`}
     >
       <Icon className="h-[1.2rem] w-[1.2rem] transition-all" />

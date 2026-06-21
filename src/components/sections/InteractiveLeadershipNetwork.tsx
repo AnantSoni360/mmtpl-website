@@ -23,7 +23,7 @@ const md: Leader = {
   photo: '/images/team/Azghar-Ahmed.jpeg' 
 }
 const directors: Leader[] = [
-  { id: 'd1', name: 'D.S. Bhowmik', title: 'Director Technical', department: 'Technical', experience: '20+ Years', responsibilities: ['Technical Strategy', 'Project Engineering'], photo: '/logo.png' },
+  { id: 'd1', name: 'D.S. Bhowmik', title: 'Director Project', department: 'Technical', experience: '20+ Years', responsibilities: ['Technical Strategy', 'Project Engineering'], photo: '/images/team/DS-Bhowmik.jpeg' },
   { id: 'd2', name: 'Akheel Ahmed', title: 'Director Operation', department: 'Operations', experience: '22+ Years', responsibilities: ['Operational Excellence', 'Resource Management'], photo: '/logo.png' },
   { id: 'd3', name: 'Madhusudhan', title: 'Director Mechanical Projects', department: 'Mechanical Projects', experience: '18+ Years', responsibilities: ['Mechanical Erection', 'Heavy Machinery'], photo: '/logo.png' },
   { id: 'd4', name: 'Kasim Vali', title: 'Director F & A', department: 'Finance & Accounts', experience: '15+ Years', responsibilities: ['Financial Planning', 'Corporate Audits'], photo: '/images/team/Kasim-Vali.jpeg' }

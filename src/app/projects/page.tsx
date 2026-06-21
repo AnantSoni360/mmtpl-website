@@ -5,6 +5,7 @@ import { TagPill } from '@/components/ui/TagPill'
 import { FadeUp } from '@/components/motion/FadeUp'
 import { projects } from '@/data/projects'
 import { cn } from '@/lib/utils'
+import { InteractiveProjectExplorer } from '@/components/sections/InteractiveProjectExplorer'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 
@@ -141,7 +142,9 @@ export default function Projects() {
 
 
       {/* ── LONG-TERM MAINTENANCE EXPERIENCE ── */}
-      <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
+      <InteractiveProjectExplorer />
+
+        <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
           <div className="text-center mb-12">
             <FadeUp>

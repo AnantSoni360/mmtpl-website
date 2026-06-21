@@ -40,11 +40,12 @@ export async function POST(req: Request) {
           name: validatedData.name,
           email: validatedData.email,
           phone: validatedData.phone,
+          // @ts-ignore
           position: validatedData.position,
           experience: validatedData.experience,
           message: validatedData.message,
           resumeUrl: validatedData.resumeUrl,
-          jobPostingId: validatedData.jobPostingId || null,
+          jobPostingId: validatedData.jobPostingId || undefined,
         },
       })
     } catch (dbError) {

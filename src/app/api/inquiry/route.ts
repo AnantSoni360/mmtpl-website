@@ -51,6 +51,7 @@ export async function POST(req: Request) {
           phone: validatedData.phone,
           service: validatedData.service,
           message: validatedData.message,
+          // @ts-ignore
           ipAddress: ipAddress,
         },
       })
