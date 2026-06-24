@@ -34,9 +34,9 @@ MMTPL Integrated Digital Platform is designed to digitize industrial operations,
 ## 🛣 Project Phases Roadmap
 
 - [x] **Phase 1: Corporate Website & Digital Presence** *(Completed)*
-- [ ] **Phase 2: Project Management Portal** *(Coming Soon)*
-- [ ] **Phase 3: Employee Management System / HRMS** *(Coming Soon)*
-- [ ] **Phase 4: Client Dashboard / ERP** *(Coming Soon)*
+- [x] **Phase 2: Enterprise Dashboards (Admin, Client, Employee)** *(Completed)*
+- [ ] **Phase 3: Advanced HRMS Integration** *(Coming Soon)*
+- [ ] **Phase 4: Advanced ERP / Client Billing** *(Coming Soon)*
 
 ---
 
@@ -60,11 +60,12 @@ C --> E[Cloudinary / UploadThing Storage]
 - Dynamic Project & Equipment Showcase
 - Careers Portal with Resume Upload
 
-### Phase 2-4: Dashboards (Coming Soon)
-- Project Tracking & Execution Maps
-- Workforce Management & Attendance
-- Analytics & Reporting
-- Role-Based Access Control
+### Phase 2: Enterprise Dashboards (Live)
+- Comprehensive Role-Based Access Control (Admin, Employee, Client)
+- Project Tracking & Task Management
+- Workforce Attendance & Leave Management
+- Document Management & Invoicing
+- Real-time Analytics & Reporting
 
 ---
 
@@ -127,9 +128,9 @@ npm run dev
 
 ```env
 DATABASE_URL="your-postgresql-url"
-UPLOADTHING_SECRET="..."
-UPLOADTHING_APP_ID="..."
-CLOUDINARY_URL="..."
+UPLOADTHING_TOKEN="..."
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="..."
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET="..."
 ```
 
 ---
