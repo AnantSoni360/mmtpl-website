@@ -147,18 +147,13 @@ export function Navbar() {
             <ArrowUpRight size={16} className="text-[var(--color-graphite)] group-hover:text-[var(--color-obsidian)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
           </Link>
           
-          <div className="relative cursor-not-allowed group">
-            <button
-              disabled
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-[var(--color-obsidian)] text-[var(--color-paper)] opacity-70 pointer-events-none shadow-sm"
-            >
-              Portal Login
-              <ArrowUpRight size={16} />
-            </button>
-            <span className="absolute -top-2 -right-1 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap leading-none shadow-sm border border-yellow-300">
-              SOON
-            </span>
-          </div>
+          <Link
+            href="/auth/login"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-[var(--color-obsidian)] text-[var(--color-paper)] hover:bg-[var(--color-obsidian)]/90 shadow-sm transition-colors group"
+          >
+            Portal Login
+            <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
       </div>
 
@@ -248,12 +243,13 @@ export function Navbar() {
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-[var(--color-silver)] text-[var(--color-obsidian)] font-semibold text-[15px] bg-[var(--color-paper)] shadow-sm hover:shadow-md transition-all">
                   Contact Us <ArrowUpRight size={16} />
                 </Link>
-                <div className="relative">
-                  <button disabled className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-[var(--color-obsidian)] text-[var(--color-paper)] font-semibold text-[15px] pointer-events-none opacity-80 shadow-sm">
+                  <Link 
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-[var(--color-obsidian)] text-[var(--color-paper)] font-semibold text-[15px] shadow-sm hover:bg-[var(--color-obsidian)]/90 transition-colors"
+                  >
                     Portal Login <ArrowUpRight size={16} />
-                  </button>
-                  <span className="absolute -top-2.5 right-4 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-sm border border-yellow-300">COMING SOON</span>
-                </div>
+                  </Link>
               </div>
             </motion.div>
           </>

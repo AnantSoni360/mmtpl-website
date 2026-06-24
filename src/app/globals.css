@@ -99,6 +99,23 @@
   --color-bg-main: #0B1220;
 }
 
+/* Force light mode variables for portal pages to maintain exact branding */
+.portal-container {
+  --color-obsidian: #0a1128 !important;
+  --color-graphite: #1c2541 !important;
+  --color-slate: #6b7a99 !important;
+  --color-mist: #bcbcbc !important;
+  --color-silver: #d6d6d6 !important;
+  --color-bone: #f5f2f0 !important;
+  --color-paper: #ffffff !important;
+  --color-lilac-bloom: #f1ccff !important;
+  --color-sky-veil: #91e0ff !important;
+  --color-bg-main: var(--color-bone) !important;
+  
+  color: var(--color-obsidian);
+  background: var(--color-bg-main);
+}
+
 @media (max-width: 768px) {
   :root {
     --section-gap: 80px;

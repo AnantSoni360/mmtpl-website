@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ConsoleSuppressor } from "@/components/ConsoleSuppressor";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: 'MMTPL — Turnkey Industrial Contractor | Refractory, Steel & EPC Projects',
@@ -17,13 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased flex flex-col min-h-screen">
+      <body className="antialiased flex flex-col min-h-screen" suppressHydrationWarning>
+        <ConsoleSuppressor />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main className="flex-grow pt-24">
+          <ConditionalLayout>
+            <Toaster position="top-center" />
             {children}
-          </main>
-          <Footer />
+          </ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>

@@ -29,6 +29,14 @@ model Inquiry {
   @@index([createdAt])
 }
 
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
 model JobPosting {
   id           String           @id @default(cuid())
   title        String
@@ -59,7 +67,7 @@ model JobApplication {
   
   // Future relation to JobSeeker profile
   jobSeekerId  String?           
-  jobSeeker    JobSeekerProfile? @relation(fields: [jobSeekerId], references: [id])
+  jobSeeker    JobSeeker?        @relation(fields: [jobSeekerId], references: [id])
 
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
@@ -71,8 +79,7 @@ model JobApplication {
 }
 
 // ==========================================
-// FUTURE PHASES: FOUNDATION MODELS
-// (Created in DB, unused in Phase 1 App)
+// PHASE 2: PORTAL MODELS
 // ==========================================
 
 enum Role {
@@ -84,111 +91,243 @@ enum Role {
 
 model User {
   id               String            @id @default(cuid())
+  name             String?
   email            String            @unique
   passwordHash     String?
   role             Role
   isActive         Boolean           @default(true)
+  avatarUrl        String?
+  lastLoginAt      DateTime?
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
 
-  employeeProfile  EmployeeProfile?
-  clientProfile    ClientProfile?
-  jobSeekerProfile JobSeekerProfile?
+  employee         Employee?
+  client           Client?
+  jobSeeker        JobSeeker?
+
+  assignedTasks    Task[]            @relation("AssignedTasks")
+  createdTasks     Task[]            @relation("CreatedTasks")
+  postedUpdates    ProjectUpdate[]   @relation("PostedUpdates")
+  uploadedDocs     Document[]        @relation("UploadedDocs")
+  sentMessages     Message[]         @relation("SentMessages")
+  receivedMessages Message[]         @relation("ReceivedMessages")
+  notifications    Notification[]
+  approvedLeaves   LeaveRequest[]    @relation("ApprovedLeaves")
 }
 
-model EmployeeProfile {
-  id           String         @id @default(cuid())
-  userId       String         @unique
-  user         User           @relation(fields: [userId], references: [id])
-  department   String
-  position     String
-  
-  tasks        Task[]
-  attendance   Attendance[]
-  leaveRequests LeaveRequest[]
+model Employee {
+  id               String            @id @default(cuid())
+  userId           String            @unique
+  user             User              @relation(fields: [userId], references: [id])
+  employeeCode     String            @unique
+  department       String
+  designation      String
+  phone            String?
+  location         String?
+  joinDate         DateTime          @db.Date
+  employmentType   String
+
+  assignments      ProjectAssignment[]
+  attendance       Attendance[]
+  leaveRequests    LeaveRequest[]    @relation("EmployeeLeaves")
 }
 
-model ClientProfile {
-  id           String    @id @default(cuid())
-  userId       String    @unique
-  user         User      @relation(fields: [userId], references: [id])
-  companyName  String
-  industry     String?
-  
-  projects     Project[]
+model Client {
+  id               String            @id @default(cuid())
+  userId           String            @unique
+  user             User              @relation(fields: [userId], references: [id])
+  companyName      String
+  gstin            String?
+  address          String?           @db.Text
+  contactPerson    String?
+
+  projects         Project[]
+  invoices         Invoice[]
+  supportTickets   SupportTicket[]
 }
 
-model JobSeekerProfile {
-  id           String           @id @default(cuid())
-  userId       String           @unique
-  user         User             @relation(fields: [userId], references: [id])
-  
-  applications JobApplication[]
+model JobSeeker {
+  id               String            @id @default(cuid())
+  userId           String            @unique
+  user             User              @relation(fields: [userId], references: [id])
+
+  applications     JobApplication[]
 }
 
 model Project {
-  id             String        @id @default(cuid())
-  name           String
-  clientId       String
-  client         ClientProfile @relation(fields: [clientId], references: [id])
-  status         ProjectStatus @default(PLANNING)
-  startDate      DateTime
-  endDate        DateTime?
-  budget         Float?
-  
-  // AI Training Data Fields (Phase 3 Prep)
-  actualCost     Float?
-  manpowerCount  Int?
-  equipmentUsed  Json?         // Stores array of equipment types
-  materialsUsed  Json?
-  delayDays      Int?          @default(0)
-  riskFactors    Json?
+  id               String            @id @default(cuid())
+  clientId         String
+  client           Client            @relation(fields: [clientId], references: [id])
+  projectCode      String            @unique
+  name             String
+  location         String?
+  scope            String?           @db.Text
+  valueCr          Float?
+  startDate        DateTime          @db.Date
+  endDate          DateTime?         @db.Date
+  status           ProjectStatus     @default(PLANNING)
+  category         String?
 
-  tasks          Task[]
-  documents      Document[]
-  
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  assignments      ProjectAssignment[]
+  tasks            Task[]
+  invoices         Invoice[]
+  updates          ProjectUpdate[]
+  documents        Document[]
+  messages         Message[]
+
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model ProjectAssignment {
+  id               String            @id @default(cuid())
+  projectId        String
+  project          Project           @relation(fields: [projectId], references: [id])
+  employeeId       String
+  employee         Employee          @relation(fields: [employeeId], references: [id])
+  roleOnProject    String
+  assignedFrom     DateTime          @db.Date
+  assignedTo       DateTime?         @db.Date
 }
 
 model Task {
-  id          String          @id @default(cuid())
-  title       String
-  description String?         @db.Text
-  projectId   String
-  project     Project         @relation(fields: [projectId], references: [id])
-  assignedTo  String?
-  employee    EmployeeProfile? @relation(fields: [assignedTo], references: [id])
-  status      TaskStatus      @default(PENDING)
-  dueDate     DateTime?
+  id               String            @id @default(cuid())
+  projectId        String
+  project          Project           @relation(fields: [projectId], references: [id])
+  assignedToId     String?
+  assignedTo       User?             @relation("AssignedTasks", fields: [assignedToId], references: [id])
+  createdById      String
+  createdBy        User              @relation("CreatedTasks", fields: [createdById], references: [id])
+  title            String
+  description      String?           @db.Text
+  priority         TaskPriority      @default(MEDIUM)
+  status           TaskStatus        @default(PENDING)
+  dueDate          DateTime?         @db.Date
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 }
 
 model Attendance {
-  id          String          @id @default(cuid())
-  employeeId  String
-  employee    EmployeeProfile @relation(fields: [employeeId], references: [id])
-  date        DateTime        @db.Date
-  status      AttendanceStatus
+  id               String            @id @default(cuid())
+  employeeId       String
+  employee         Employee          @relation(fields: [employeeId], references: [id])
+  date             DateTime          @db.Date
+  checkIn          DateTime?
+  checkOut         DateTime?
+  status           AttendanceStatus
+  hoursWorked      Float?
+
+  @@unique([employeeId, date])
 }
 
 model LeaveRequest {
-  id          String          @id @default(cuid())
-  employeeId  String
-  employee    EmployeeProfile @relation(fields: [employeeId], references: [id])
-  startDate   DateTime        @db.Date
-  endDate     DateTime        @db.Date
-  reason      String
-  status      LeaveStatus     @default(PENDING)
+  id               String            @id @default(cuid())
+  employeeId       String
+  employee         Employee          @relation("EmployeeLeaves", fields: [employeeId], references: [id])
+  approvedById     String?
+  approvedBy       User?             @relation("ApprovedLeaves", fields: [approvedById], references: [id])
+  fromDate         DateTime          @db.Date
+  toDate           DateTime          @db.Date
+  leaveType        LeaveType
+  reason           String            @db.Text
+  status           LeaveStatus       @default(PENDING)
+  adminRemark      String?           @db.Text
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model Invoice {
+  id               String            @id @default(cuid())
+  projectId        String
+  project          Project           @relation(fields: [projectId], references: [id])
+  clientId         String
+  client           Client            @relation(fields: [clientId], references: [id])
+  invoiceNumber    String            @unique
+  amount           Float
+  tax              Float
+  total            Float
+  dueDate          DateTime          @db.Date
+  status           InvoiceStatus     @default(DRAFT)
+  pdfUrl           String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  items            InvoiceItem[]
+}
+
+model InvoiceItem {
+  id          String   @id @default(cuid())
+  invoiceId   String
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Int
+  unitPrice   Float
+  total       Float
+}
+
+model ProjectUpdate {
+  id               String            @id @default(cuid())
+  projectId        String
+  project          Project           @relation(fields: [projectId], references: [id])
+  postedById       String
+  postedBy         User              @relation("PostedUpdates", fields: [postedById], references: [id])
+  title            String
+  content          String            @db.Text
+  photoUrls        String[]
+  isClientVisible  Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 }
 
 model Document {
-  id          String   @id @default(cuid())
-  name        String
-  fileUrl     String
-  projectId   String?
-  project     Project? @relation(fields: [projectId], references: [id])
-  uploadedBy  String   // User ID
-  createdAt   DateTime @default(now())
+  id               String            @id @default(cuid())
+  projectId        String?
+  project          Project?          @relation(fields: [projectId], references: [id])
+  uploadedById     String
+  uploadedBy       User              @relation("UploadedDocs", fields: [uploadedById], references: [id])
+  name             String
+  fileUrl          String
+  docType          String
+  isClientVisible  Boolean           @default(false)
+  isEmployeeVisible Boolean          @default(false)
+  createdAt        DateTime          @default(now())
+}
+
+model Message {
+  id               String            @id @default(cuid())
+  fromUserId       String
+  fromUser         User              @relation("SentMessages", fields: [fromUserId], references: [id])
+  toUserId         String
+  toUser           User              @relation("ReceivedMessages", fields: [toUserId], references: [id])
+  projectId        String?
+  project          Project?          @relation(fields: [projectId], references: [id])
+  content          String            @db.Text
+  isRead           Boolean           @default(false)
+  readAt           DateTime?
+  createdAt        DateTime          @default(now())
+}
+
+model Notification {
+  id               String            @id @default(cuid())
+  userId           String
+  user             User              @relation(fields: [userId], references: [id])
+  title            String
+  body             String            @db.Text
+  isRead           Boolean           @default(false)
+  link             String?
+  type             String
+  createdAt        DateTime          @default(now())
+}
+
+model SupportTicket {
+  id               String            @id @default(cuid())
+  clientId         String
+  client           Client            @relation(fields: [clientId], references: [id])
+  subject          String
+  description      String            @db.Text
+  status           TicketStatus      @default(OPEN)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 }
 
 // Enums
@@ -202,6 +341,7 @@ enum InquiryStatus {
 enum ApplicationStatus { 
   RECEIVED 
   SHORTLISTED 
+  INTERVIEW_SCHEDULED
   REJECTED 
   HIRED 
 }
@@ -225,6 +365,13 @@ enum TaskStatus {
   COMPLETED 
 }
 
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
 enum AttendanceStatus { 
   PRESENT 
   ABSENT 
@@ -236,4 +383,26 @@ enum LeaveStatus {
   PENDING 
   APPROVED 
   REJECTED 
+}
+
+enum LeaveType {
+  SICK
+  CASUAL
+  ANNUAL
+  UNPAID
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
 }

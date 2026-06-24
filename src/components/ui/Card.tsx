@@ -10,8 +10,8 @@ export function Card({ children, className, elevated = false, ...props }: CardPr
   return (
     <div
       className={cn(
-        'card-bg border border-[var(--color-silver)]',
-        elevated ? 'rounded-[var(--radius-card-lg)] shadow-[var(--shadow-card)] p-8 md:p-12' : 'rounded-[var(--radius-card)] p-6 md:p-8',
+        'card-bg border-[0.5px] border-[var(--color-silver)]',
+        elevated ? 'rounded-[16px] shadow-[var(--shadow-card)] p-8 md:p-12' : 'rounded-[16px] p-6 md:p-8',
         'transition-all duration-300',
         className
       )}
