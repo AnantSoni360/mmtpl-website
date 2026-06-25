@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ParticleBackground } from '@/components/ui/ParticleBackground';
-import { CheckCircle2, ShieldCheck, Activity, Globe } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Activity, Globe, ArrowLeft } from 'lucide-react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 export default function LoginPage() {
@@ -56,8 +56,16 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex bg-[#f8f9fa] dark:bg-[#050B1A] transition-colors duration-500">
+      {/* Back to Website */}
+      <div className="absolute top-6 left-6 lg:left-12 z-50">
+        <Link href="/" className="flex items-center gap-2 text-[14px] font-switzer font-medium text-gray-600 dark:text-[#B0B8D0] hover:text-[#2563EB] dark:hover:text-[#00E5FF] transition-all bg-white/50 dark:bg-black/20 px-4 py-2 rounded-full backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md">
+          <ArrowLeft size={16} />
+          Back to Website
+        </Link>
+      </div>
+
       {/* Theme Switcher */}
-      <div className="absolute top-6 right-6 z-50">
+      <div className="absolute top-6 right-6 lg:right-12 z-50">
         <ThemeSwitcher />
       </div>
 
