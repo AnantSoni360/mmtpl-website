@@ -55,7 +55,7 @@ export function EmployeeActions({ id, isActive }: { id: string, isActive: boolea
         onConfirm={handleDeactivate}
         title="Deactivate Employee"
         description="Are you sure you want to deactivate this employee? They will no longer be able to log in to the portal."
-        confirmText="Deactivate"
+        confirmLabel="Deactivate"
         isDestructive={true}
       />
     </>
