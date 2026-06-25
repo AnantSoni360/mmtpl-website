@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, MapPin, Phone } from 'lucide-react'
-import { NewsletterForm } from '@/components/sections/NewsletterForm'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -14,17 +13,7 @@ export function Footer() {
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
       <div className="container mx-auto px-6 max-w-[var(--page-max-width)] relative z-10">
-        
-        {/* Top Newsletter / CTA section inside footer */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 pb-16 mb-16 border-b border-white/10">
-          <div className="max-w-xl">
-            <h3 className="font-editorial text-3xl text-white mb-3">Stay connected with MMTPL</h3>
-            <p className="text-blue-100/60 font-switzer text-sm leading-relaxed">
-              Subscribe to our newsletter for the latest updates on our industrial projects, technological advancements, and company news.
-            </p>
-          </div>
-          <NewsletterForm />
-        </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Brand */}

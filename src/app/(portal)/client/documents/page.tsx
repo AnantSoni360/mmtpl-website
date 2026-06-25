@@ -27,6 +27,7 @@ export default async function ClientDocumentsPage() {
   const tableData = documents.map(doc => ({
     id: doc.id,
     name: doc.name,
+    docType: doc.docType,
     project: doc.project?.name || 'Company Document',
     uploadedBy: doc.uploadedBy.name || 'Admin',
     uploadedAt: format(new Date(doc.createdAt), 'dd MMM yyyy'),
@@ -57,6 +58,15 @@ export default async function ClientDocumentsPage() {
         data={tableData}
         columns={[
           { header: 'File Name', accessorKey: 'name' },
+          { 
+            header: 'Type', 
+            accessorKey: 'docType',
+            cell: (item) => (
+              <span className="px-2 py-1 bg-[var(--color-bone)] border border-[var(--color-silver)] rounded-full text-[11px] font-medium text-[var(--color-slate)] uppercase tracking-wider">
+                {item.docType}
+              </span>
+            )
+          },
           { header: 'Project', accessorKey: 'project' },
           { header: 'Date', accessorKey: 'uploadedAt' },
           {

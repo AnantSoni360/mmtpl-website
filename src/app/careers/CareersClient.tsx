@@ -220,17 +220,19 @@ export default function CareersClient({ jobs, isLoggedIn }: CareersClientProps) 
                 </div>
 
                 <div className="grid grid-cols-1 gap-5">
-                  <Select
-                    options={[
-                      { value: '0-2', label: '0-2 Years' },
-                      { value: '3-5', label: '3-5 Years' },
-                      { value: '6-10', label: '6-10 Years' },
-                      { value: '10+', label: '10+ Years' },
-                    ]}
-                    placeholder="Total Experience *"
+                  <select
                     {...register('experience')}
-                    error={errors.experience?.message}
-                  />
+                    className="w-full bg-[var(--color-bone)] border border-[var(--color-silver)] rounded-[var(--radius-control)] px-4 py-3 text-[14px] font-switzer outline-none focus:border-[var(--color-obsidian)]"
+                  >
+                    <option value="" disabled selected>Total Experience *</option>
+                    <option value="0-2">0-2 Years</option>
+                    <option value="3-5">3-5 Years</option>
+                    <option value="6-10">6-10 Years</option>
+                    <option value="10+">10+ Years</option>
+                  </select>
+                  {errors.experience?.message && (
+                    <span className="text-[13px] text-red-500 font-switzer font-medium mt-1">{errors.experience.message}</span>
+                  )}
                 </div>
 
                 <Textarea 

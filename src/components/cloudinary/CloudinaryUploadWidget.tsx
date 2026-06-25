@@ -8,13 +8,15 @@ interface CloudinaryUploadWidgetProps {
   onUploadError?: (error: any) => void
   resourceType?: 'image' | 'video' | 'raw' | 'auto'
   maxFiles?: number
+  clientAllowedFormats?: string[]
 }
 
 export function CloudinaryUploadWidget({ 
   onUploadSuccess, 
   onUploadError,
   resourceType = 'auto',
-  maxFiles = 1
+  maxFiles = 1,
+  clientAllowedFormats = ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg']
 }: CloudinaryUploadWidgetProps) {
   
   return (
@@ -23,7 +25,7 @@ export function CloudinaryUploadWidget({
       options={{
         maxFiles,
         resourceType,
-        clientAllowedFormats: ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg'],
+        clientAllowedFormats,
         maxFileSize: 5000000, // 5MB
       }}
       onSuccess={(result, { widget }) => {

@@ -8,10 +8,8 @@ export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
   // Routes where public Navbar/Footer should be hidden
-  const isPortal = pathname?.startsWith('/admin') || 
-                   pathname?.startsWith('/employee') || 
-                   pathname?.startsWith('/client') || 
-                   pathname?.startsWith('/auth');
+  const portalRoutes = ['/admin', '/employee', '/client', '/auth'];
+  const isPortal = portalRoutes.some(route => pathname === route || pathname?.startsWith(`${route}/`));
 
   if (isPortal) {
     return <>{children}</>;

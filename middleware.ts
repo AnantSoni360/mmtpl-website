@@ -37,17 +37,26 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Protect portal routes
+  // Protect portal routes and API routes
   const isPortalRoute =
     pathname.startsWith('/admin') ||
     pathname.startsWith('/employee') ||
     pathname.startsWith('/client') ||
     pathname.startsWith('/jobs');
 
-  if (isPortalRoute) {
+  const isApiRoute = 
+    pathname.startsWith('/api/admin') ||
+    pathname.startsWith('/api/employee') ||
+    pathname.startsWith('/api/client') ||
+    pathname.startsWith('/api/jobs');
+
+  if (isPortalRoute || isApiRoute) {
     const token = request.cookies.get('auth_token')?.value;
 
     if (!token) {
+      if (isApiRoute) {
+        return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } });
+      }
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
 
@@ -64,21 +73,34 @@ export async function middleware(request: NextRequest) {
       };
 
       // Strict Role-based access control for routes
-      if (pathname.startsWith('/admin') && role !== 'ADMIN') {
-        return NextResponse.redirect(getPortalUrl(role));
+      if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
+        if (role !== 'ADMIN') {
+          if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+          return NextResponse.redirect(getPortalUrl(role));
+        }
       }
-      if (pathname.startsWith('/employee') && role !== 'EMPLOYEE') {
-        return NextResponse.redirect(getPortalUrl(role));
+      if (pathname.startsWith('/employee') || pathname.startsWith('/api/employee')) {
+        if (role !== 'EMPLOYEE') {
+          if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+          return NextResponse.redirect(getPortalUrl(role));
+        }
       }
-      if (pathname.startsWith('/client') && role !== 'CLIENT') {
-        return NextResponse.redirect(getPortalUrl(role));
+      if (pathname.startsWith('/client') || pathname.startsWith('/api/client')) {
+        if (role !== 'CLIENT') {
+          if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+          return NextResponse.redirect(getPortalUrl(role));
+        }
       }
-      if (pathname.startsWith('/jobs') && role !== 'JOB_SEEKER') {
-        return NextResponse.redirect(getPortalUrl(role));
+      if (pathname.startsWith('/jobs') || pathname.startsWith('/api/jobs')) {
+        if (role !== 'JOB_SEEKER') {
+          if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+          return NextResponse.redirect(getPortalUrl(role));
+        }
       }
       
     } catch (error) {
       // Invalid or expired token
+      if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } });
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
   }
@@ -87,5 +109,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/employee/:path*', '/client/:path*', '/jobs/:path*'],
+  matcher: [
+    '/admin/:path*', '/employee/:path*', '/client/:path*', '/jobs/:path*',
+    '/api/admin/:path*', '/api/employee/:path*', '/api/client/:path*', '/api/jobs/:path*'
+  ],
 };

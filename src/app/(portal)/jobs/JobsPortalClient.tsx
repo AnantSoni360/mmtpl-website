@@ -16,11 +16,12 @@ import { toast } from 'sonner';
 
 interface JobsPortalClientProps {
   jobs: JobPosting[];
+  jobSeeker?: any;
 }
 
-export default function JobsPortalClient({ jobs }: JobsPortalClientProps) {
+export default function JobsPortalClient({ jobs, jobSeeker }: JobsPortalClientProps) {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
-  const [resumeUrl, setResumeUrl] = useState<string>('');
+  const [resumeUrl, setResumeUrl] = useState<string>(jobSeeker?.resumeUrl || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadError, setUploadError] = useState(false);
   const [nativeFile, setNativeFile] = useState<File | null>(null);
@@ -32,6 +33,12 @@ export default function JobsPortalClient({ jobs }: JobsPortalClientProps) {
 
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<ApplicationInput>({
     resolver: zodResolver(ApplicationSchema),
+    defaultValues: {
+      name: jobSeeker?.user?.name || '',
+      email: jobSeeker?.user?.email || '',
+      phone: jobSeeker?.phone || '',
+      experience: jobSeeker?.experience || '',
+    }
   });
 
   const handleApplyClick = (jobTitle: string, jobId: string) => {
@@ -169,17 +176,21 @@ export default function JobsPortalClient({ jobs }: JobsPortalClientProps) {
               <Input placeholder="Position Applying For *" {...register('position')} error={errors.position?.message} />
             </div>
 
-            <Select
-              options={[
-                { value: '0-2', label: '0-2 Years' },
-                { value: '3-5', label: '3-5 Years' },
-                { value: '6-10', label: '6-10 Years' },
-                { value: '10+', label: '10+ Years' },
-              ]}
-              placeholder="Total Experience *"
-              {...register('experience')}
-              error={errors.experience?.message}
-            />
+            <div className="grid grid-cols-1 gap-5">
+              <select
+                {...register('experience')}
+                className="w-full bg-[var(--color-bone)] border border-[var(--color-silver)] rounded-[var(--radius-control)] px-4 py-3 text-[14px] font-switzer outline-none focus:border-[var(--color-obsidian)]"
+              >
+                <option value="" disabled selected>Total Experience *</option>
+                <option value="0-2">0-2 Years</option>
+                <option value="3-5">3-5 Years</option>
+                <option value="6-10">6-10 Years</option>
+                <option value="10+">10+ Years</option>
+              </select>
+              {errors.experience?.message && (
+                <span className="text-[13px] text-red-500 font-switzer font-medium mt-1">{errors.experience.message}</span>
+              )}
+            </div>
 
             <Textarea 
               placeholder="Cover Note / Why should we hire you? (Optional)" 
@@ -220,9 +231,7 @@ export default function JobsPortalClient({ jobs }: JobsPortalClientProps) {
                   )}
                 </div>
               ) : (
-                <CloudinaryUploadWidget
-                  resourceType="auto"
-                  maxFiles={1}
+                <CloudinaryUploadWidget 
                   onUploadSuccess={(url) => {
                     setResumeUrl(url);
                     setValue('resumeUrl', url, { shouldValidate: true });
@@ -232,6 +241,8 @@ export default function JobsPortalClient({ jobs }: JobsPortalClientProps) {
                     console.error('Upload error:', error);
                     setUploadError(true);
                   }}
+                  resourceType="raw"
+                  clientAllowedFormats={['pdf', 'doc', 'docx']}
                 />
               )}
             </div>

@@ -2,6 +2,7 @@ import { getCurrentUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import { Button } from '@/components/ui/Button';
+import { ProfileFormClient } from './ProfileFormClient';
 
 export default async function JobSeekerProfilePage() {
   const user = await getCurrentUser();
@@ -22,34 +23,13 @@ export default async function JobSeekerProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <form action={async (formData) => {
-          'use server';
-          const prisma = (await import('@/lib/prisma')).default;
-          const { revalidatePath } = await import('next/cache');
-          const name = formData.get('name') as string;
-          await prisma.user.update({
-            where: { id: user.id },
-            data: { name }
-          });
-          revalidatePath('/jobs/profile');
-        }} className="bg-[var(--color-paper)] p-6 rounded-[16px] border-[0.5px] border-[var(--color-silver)] shadow-[var(--shadow-card)] space-y-6">
-          <h2 className="text-[15px] font-semibold text-[var(--color-obsidian)] font-switzer uppercase tracking-wider mb-4 border-b border-[var(--color-silver)] pb-2">Personal Information</h2>
-          
-          <div>
-            <label className="block text-[13px] font-semibold text-[var(--color-obsidian)] font-switzer uppercase tracking-wider mb-2">Full Name</label>
-            <input type="text" name="name" defaultValue={jobSeeker.user.name || ''} required className="w-full bg-[var(--color-bone)] border border-[var(--color-silver)] rounded-[var(--radius-control)] px-4 py-2.5 text-[14px] font-switzer outline-none focus:border-[var(--color-obsidian)] transition-colors" />
-          </div>
-
-          <div>
-            <label className="block text-[13px] font-semibold text-[var(--color-obsidian)] font-switzer uppercase tracking-wider mb-2">Email Address</label>
-            <input type="email" disabled defaultValue={jobSeeker.user.email} className="w-full bg-[var(--color-bone)] border border-[var(--color-silver)] rounded-[var(--radius-control)] px-4 py-2.5 text-[14px] font-switzer text-[var(--color-slate)] opacity-70" />
-            <p className="text-[11px] text-[var(--color-slate)] mt-1">Email address cannot be changed.</p>
-          </div>
-
-          <div className="pt-2">
-            <Button type="submit" variant="lilac" className="w-full">Update Information</Button>
-          </div>
-        </form>
+        <ProfileFormClient initialData={{
+          name: jobSeeker.user.name || '',
+          phone: jobSeeker.phone || '',
+          experience: jobSeeker.experience || '',
+          currentRole: jobSeeker.currentRole || '',
+          resumeUrl: jobSeeker.resumeUrl || ''
+        }} />
 
         <form action={async (formData) => {
           'use server';
