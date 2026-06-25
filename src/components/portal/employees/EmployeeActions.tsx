@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { deactivateEmployee } from '@/app/actions/employeeDeactivate';
 import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
-import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { ConfirmDialog } from '@/components/portal/shared/ConfirmDialog';
 
 export function EmployeeActions({ id, isActive }: { id: string, isActive: boolean }) {
   const [isPending, startTransition] = useTransition();
