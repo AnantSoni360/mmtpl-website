@@ -96,14 +96,26 @@ export default function Home() {
             </motion.h1>
 
             {/* Sub-headline */}
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-gray-300 text-lg md:text-xl leading-relaxed mb-10 max-w-[580px]"
+              className="mb-12 max-w-[640px] space-y-6"
             >
-              MMTPL delivers end-to-end engineering, construction, and project execution services — driving operational excellence through quality, safety, and innovation.
-            </motion.p>
+              <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light">
+                <span className="text-white font-medium">MAN MACHINE TECHNOCRATS PRIVATE LIMITED (MMTPL)</span> delivers comprehensive engineering, construction, and project execution solutions across diverse industrial sectors. With a strong commitment to <span className="text-blue-300 font-medium">quality, safety, innovation,</span> and <span className="text-blue-300 font-medium">timely delivery</span>, we provide end-to-end services that enhance operational efficiency and create sustainable value for our clients.
+              </p>
+              
+              <div className="relative group">
+                <div className="absolute inset-0 bg-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative flex items-stretch gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md hover:border-blue-500/30 transition-colors duration-500">
+                  <div className="w-1.5 rounded-full bg-gradient-to-b from-blue-400 to-blue-600 shadow-[0_0_12px_rgba(59,130,246,0.6)]" />
+                  <p className="text-gray-400 text-base md:text-lg leading-relaxed">
+                    Driven by <span className="text-gray-200 font-medium">technical expertise</span> and <span className="text-gray-200 font-medium">excellence in execution</span>, MMTPL is dedicated to building robust industrial infrastructure that supports the growth and demands of tomorrow's industries.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
             {/* CTAs */}
             <motion.div 

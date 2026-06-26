@@ -62,13 +62,52 @@ export default function About() {
             Engineered for Excellence. Built to Last.
           </h1>
         </FadeUp>
-        <FadeUp delay={0.3}>
-          <p className="body-text text-[var(--color-graphite)] text-lg mb-6 leading-relaxed text-left md:text-center">
-            Founded in 2004 in India, MMTPL began its journey as a specialized Refractory Installation Contracting Company. Guided by a visionary leadership team and a clear strategic roadmap, the company steadily expanded its capabilities by diversifying into multiple business verticals and establishing a strong presence across major core industrial sectors.
-          </p>
-          <p className="body-text text-[var(--color-slate)] text-lg leading-relaxed text-left md:text-center">
-            Over the years, MMTPL has evolved into a leading turnkey contracting organization, delivering comprehensive "Concept to Commissioning" solutions. Today, the company is recognized for its expertise in engineering, construction, mechanical works, piping, refractory applications, electrical and instrumentation services, commissioning, and industrial project execution.
-          </p>
+        <FadeUp delay={0.3} className="mt-12 text-left w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            
+            {/* Left Column - The Journey & Impact (Pars 1 & 3) */}
+            <div className="lg:col-span-7 flex flex-col gap-10">
+              {/* Par 1 */}
+              <div>
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#3b82f6] mb-5 font-switzer">Our Origins</h3>
+                <p className="text-[1.35rem] leading-relaxed text-[var(--color-obsidian)] font-light">
+                  <span className="font-editorial font-medium">Founded in 2004, MAN MACHINE TECHNOCRATS PRIVATE LIMITED (MMTPL)</span> commenced its journey as a specialized Refractory Installation Contracting Company, serving the evolving needs of India's industrial sector.
+                </p>
+                <p className="text-lg text-[var(--color-graphite)] mt-5 leading-relaxed font-switzer">
+                  Under the guidance of a visionary leadership team and a well-defined strategic growth plan, the company progressively expanded its capabilities, diversified its service offerings, and established a strong presence across major core industries.
+                </p>
+              </div>
+
+              <div className="w-full h-px bg-[var(--color-silver)]" />
+
+              {/* Par 3 */}
+              <div>
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#3b82f6] mb-5 font-switzer">Our Commitment</h3>
+                <p className="text-lg text-[var(--color-graphite)] leading-relaxed font-switzer">
+                  Driven by a commitment to <strong className="text-[var(--color-obsidian)] font-medium">quality, safety, innovation, and operational excellence</strong>, MMTPL consistently delivers projects that meet the highest industry standards while ensuring timely execution and customer satisfaction. Today, the company stands as a reliable partner to leading industrial organizations, contributing to the development of robust and sustainable industrial infrastructure across India.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - The Transformation (Par 2) */}
+            <div className="lg:col-span-5">
+              <div className="bg-[var(--color-paper)] border border-[var(--color-silver)] p-8 md:p-10 h-full relative overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500">
+                {/* Accent line top */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3b82f6] to-blue-300" />
+                
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-slate)] mb-6 font-switzer">The Transformation</h3>
+                
+                <p className="font-editorial text-2xl text-[var(--color-obsidian)] leading-tight mb-6">
+                  Over the past two decades, MMTPL has transformed into a trusted turnkey engineering and contracting organization, delivering integrated <span className="text-[#3b82f6] italic">"Concept to Commissioning"</span> solutions for complex industrial projects.
+                </p>
+                
+                <p className="text-base text-[var(--color-slate)] leading-relaxed font-switzer">
+                  The company's multidisciplinary expertise encompasses engineering, construction, mechanical erection, piping systems, refractory installation, electrical and instrumentation works, commissioning, and comprehensive project management services.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </FadeUp>
       </section>
 
@@ -223,7 +262,7 @@ export default function About() {
             <div className="bg-[var(--color-paper)] p-10 rounded-[var(--radius-card)] border border-[var(--color-silver)] h-full hover:border-[var(--color-graphite)] transition-colors">
               <h2 className="display text-[var(--color-obsidian)] mb-6">Vision</h2>
               <p className="body-text text-[var(--color-graphite)] text-lg leading-relaxed">
-                To achieve leadership and global competitiveness by adopting innovative technologies in core sector of installation services, while upholding our values, business ethics, and integrity, and improving the quality of life of the communities we serve.
+                To be a globally competitive leader in industrial installation and engineering services by embracing innovation, advanced technologies, and operational excellence. We strive to create sustainable value for our stakeholders while upholding the highest standards of integrity, business ethics, and professionalism, contributing to the growth of industry and enhancing the quality of life in the communities we serve.
               </p>
             </div>
           </FadeUp>
@@ -233,7 +272,7 @@ export default function About() {
               <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[var(--color-sky-veil)] opacity-20 rounded-full blur-2xl" />
               <h2 className="display text-[var(--color-paper)] mb-6">Mission</h2>
               <p className="body-text text-[var(--color-paper)] opacity-80 text-lg leading-relaxed relative z-10">
-                To deliver unparalleled services in our core sectors with the highest quality, professionalism, and timeliness.
+                To deliver exceptional engineering, construction, and industrial installation services across our core sectors by maintaining the highest standards of quality, safety, professionalism, and timely execution. We are committed to exceeding customer expectations, fostering innovation, and creating long-term value for our clients, employees, and stakeholders.
               </p>
             </div>
           </FadeUp>
@@ -243,13 +282,30 @@ export default function About() {
       {/* ── LEADERSHIP TEAM ── */}
       <section className="w-full bg-[var(--color-bone)] border-y border-[var(--color-silver)] py-16 overflow-hidden">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
-          <div className="text-center mb-8 relative z-10">
+          <div className="text-center mb-16 relative z-10 flex flex-col items-center">
             <FadeUp>
               <TagPill variant="bone" className="mb-6">Our People</TagPill>
-              <h2 className="display text-[var(--color-obsidian)]">Leadership Network</h2>
-              <p className="body-text text-[var(--color-graphite)] mt-4 max-w-2xl mx-auto">
-                The strategic minds driving MMTPL's global operations and industrial excellence.
-              </p>
+              <h2 className="display text-[var(--color-obsidian)] mb-8">Leadership Network</h2>
+              
+              <div className="max-w-[800px] mx-auto flex flex-col gap-6">
+                <h3 className="font-editorial text-2xl md:text-[28px] text-[#3b82f6] leading-snug font-medium">
+                  The Strategic Minds Driving MMTPL's Growth and Industrial Excellence
+                </h3>
+                
+                <p className="text-lg md:text-xl text-[var(--color-graphite)] leading-relaxed font-light">
+                  At MMTPL, our leadership team brings together decades of industry experience, technical expertise, and strategic vision. Their collective knowledge and commitment to excellence drive the company's growth, operational efficiency, and successful execution of complex industrial projects across diverse sectors.
+                </p>
+
+                <div className="flex items-center justify-center gap-4 py-3 opacity-60">
+                   <div className="w-16 h-px bg-[var(--color-silver)]" />
+                   <div className="w-2 h-2 rounded-full border border-[#3b82f6] bg-transparent" />
+                   <div className="w-16 h-px bg-[var(--color-silver)]" />
+                </div>
+                
+                <p className="text-base md:text-lg text-[var(--color-slate)] leading-relaxed">
+                  Focused on <strong className="text-[var(--color-obsidian)] font-medium tracking-wide">innovation, customer satisfaction, safety, and sustainable development</strong>, our leaders foster a culture of accountability, collaboration, and continuous improvement. Through strong governance and forward-thinking decision-making, they guide MMTPL in delivering world-class engineering and construction solutions while creating long-term value for clients, employees, and stakeholders.
+                </p>
+              </div>
             </FadeUp>
           </div>
 

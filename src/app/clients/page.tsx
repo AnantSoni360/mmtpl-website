@@ -249,7 +249,7 @@ export default function Clients() {
               <FadeUp delay={0.1 * (idx + 1)} key={idx}>
                 <div className="bg-bone dark:bg-[#162033] p-8 rounded-[var(--radius-card)] border border-silver dark:border-white/10 h-full hover:border-obsidian dark:hover:border-gray-600 transition-colors shadow-sm">
                   <div className="flex items-center gap-2 mb-6">
-                    <MapPin className="w-5 h-5 text-lilac-bloom" />
+                    <MapPin className="w-5 h-5 text-[#3b82f6]" />
                     <h3 className="heading-sm text-obsidian dark:text-white">{region.country}</h3>
                   </div>
                   <ul className="flex flex-col gap-3 mb-6">
@@ -261,8 +261,8 @@ export default function Clients() {
                     ))}
                   </ul>
                   {region.note && (
-                    <div className="mt-auto pt-4 border-t border-gray-800">
-                      <p className="text-xs text-[var(--color-lilac-bloom)] leading-relaxed italic">
+                    <div className="mt-auto pt-4 border-t border-silver dark:border-white/10">
+                      <p className="text-xs font-semibold text-[#3b82f6] dark:text-blue-400 leading-relaxed">
                         {region.note}
                       </p>
                     </div>
