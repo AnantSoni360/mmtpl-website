@@ -12,6 +12,17 @@ const JWT_SECRET = new TextEncoder().encode(
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // TEMPORARY: Portal is "Coming Soon" - redirect all auth and portal routes to home
+  if (
+    pathname.startsWith('/auth') ||
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/employee') ||
+    pathname.startsWith('/client') ||
+    pathname.startsWith('/jobs')
+  ) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
   // Basic in-memory rate limiting for POST requests (10 reqs per minute per IP)
   // For production with multiple edge nodes, Redis or Arcjet is recommended.
   if (request.method === 'POST') {
@@ -57,7 +68,7 @@ export async function middleware(request: NextRequest) {
       if (isApiRoute) {
         return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } });
       }
-      return NextResponse.redirect(new URL('/auth/login', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
 
     try {
@@ -69,7 +80,7 @@ export async function middleware(request: NextRequest) {
         if (r === 'EMPLOYEE') return new URL('/employee', request.url);
         if (r === 'CLIENT') return new URL('/client', request.url);
         if (r === 'JOB_SEEKER') return new URL('/jobs', request.url);
-        return new URL('/auth/login', request.url);
+        return new URL('/', request.url);
       };
 
       // Strict Role-based access control for routes
@@ -101,7 +112,7 @@ export async function middleware(request: NextRequest) {
     } catch (error) {
       // Invalid or expired token
       if (isApiRoute) return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } });
-      return NextResponse.redirect(new URL('/auth/login', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
   }
 
@@ -110,7 +121,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/admin/:path*', '/employee/:path*', '/client/:path*', '/jobs/:path*',
+    '/auth/:path*', '/admin/:path*', '/employee/:path*', '/client/:path*', '/jobs/:path*',
     '/api/admin/:path*', '/api/employee/:path*', '/api/client/:path*', '/api/jobs/:path*'
   ],
 };
