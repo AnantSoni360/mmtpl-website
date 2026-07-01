@@ -251,7 +251,7 @@ export default function Contact() {
       <section className="w-full mt-12 bg-bg-main dark:bg-[#0a1128] border-t border-silver/30 dark:border-white/10">
         <div className="w-full h-[500px] relative">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.8354670220265!2d72.87955561537707!3d19.114881657095493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c80ee9155555%3A0xc31604ddfba6c7aa!2sAkruti%20Trade%20Center!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            src="https://maps.google.com/maps?q=Gokul%20Square,%20Bellary-Sandur%20Road,%20Toranagallu,%20Karnataka%20583123&t=&z=15&ie=UTF8&iwloc=&output=embed"
             className="absolute top-0 left-0 w-full h-full border-0 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
             allowFullScreen={true}
             loading="lazy" 

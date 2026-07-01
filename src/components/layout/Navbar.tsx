@@ -147,13 +147,12 @@ export function Navbar() {
             <ArrowUpRight size={16} className="text-[var(--color-graphite)] group-hover:text-[var(--color-obsidian)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
           </Link>
           
-          <Link
-            href="/auth/login"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-[var(--color-obsidian)] text-[var(--color-paper)] hover:bg-[var(--color-obsidian)]/90 shadow-sm transition-colors group"
+          <div
+            className="flex flex-col items-center justify-center px-5 py-1.5 rounded-full bg-[var(--color-obsidian)] text-[var(--color-paper)] shadow-sm opacity-90 cursor-not-allowed select-none"
           >
-            Portal Login
-            <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
+            <span className="text-[13px] font-semibold leading-tight">Portal Login</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-blue-300 dark:text-blue-600 mt-0.5">Coming Soon</span>
+          </div>
         </div>
       </div>
 
@@ -243,13 +242,12 @@ export function Navbar() {
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-[var(--color-silver)] text-[var(--color-obsidian)] font-semibold text-[15px] bg-[var(--color-paper)] shadow-sm hover:shadow-md transition-all">
                   Contact Us <ArrowUpRight size={16} />
                 </Link>
-                  <Link 
-                    href="/auth/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-[var(--color-obsidian)] text-[var(--color-paper)] font-semibold text-[15px] shadow-sm hover:bg-[var(--color-obsidian)]/90 transition-colors"
+                  <div 
+                    className="w-full flex flex-col items-center justify-center py-2.5 rounded-2xl bg-[var(--color-obsidian)] text-[var(--color-paper)] shadow-sm opacity-90 cursor-not-allowed select-none"
                   >
-                    Portal Login <ArrowUpRight size={16} />
-                  </Link>
+                    <span className="text-[15px] font-semibold leading-tight">Portal Login</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-blue-300 dark:text-blue-600 mt-0.5">Coming Soon</span>
+                  </div>
               </div>
             </motion.div>
           </>
