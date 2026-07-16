@@ -144,9 +144,7 @@ export default function Projects() {
 
 
       {/* ── LONG-TERM MAINTENANCE EXPERIENCE ── */}
-      {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
       <InteractiveProjectExplorer />
-      */}
 
         <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
