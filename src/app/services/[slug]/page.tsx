@@ -115,12 +115,14 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <Link href={`/projects/${project.slug}`} key={project.id}>
               <div className="group bg-[var(--color-paper)] border border-[var(--color-silver)] rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300">
                 <div className="relative h-48">
+                  {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
                   <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill 
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  */}
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-[var(--color-obsidian)] mb-2 group-hover:text-[#3b82f6] transition-colors">{project.title}</h3>

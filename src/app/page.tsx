@@ -559,13 +559,15 @@ export default function Home() {
               <StaggerItem key={project.id}>
                 <div className="group bg-[var(--color-paper)] border border-[var(--color-silver)] rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-400">
                   <div className="relative h-56 overflow-hidden">
+                    {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
                     <Image 
                       src={project.image} 
                       alt={project.title} 
                       fill 
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 33vw"
-                    />
+                    /> 
+                    */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-4">
                       <span className="text-xs font-bold uppercase tracking-widest text-white/80 bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full">

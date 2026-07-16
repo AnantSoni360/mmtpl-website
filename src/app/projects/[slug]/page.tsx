@@ -23,6 +23,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       {/* ── HERO ── */}
       <section className="relative pt-48 pb-32 bg-[#0a1128] overflow-hidden">
         <div className="absolute inset-0 opacity-40">
+          {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
           <Image 
             src={project.image} 
             alt={project.title} 
@@ -30,6 +31,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             className="object-cover scale-105 filter blur-sm brightness-50"
             priority
           />
+          */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128] via-[#0a1128]/80 to-transparent" />
         </div>
         
@@ -56,12 +58,14 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           {/* Main Image & Description */}
           <div className="lg:col-span-2 flex flex-col gap-10">
             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+              {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
               <Image 
                 src={project.image} 
                 alt={project.title} 
                 fill 
                 className="object-cover"
               />
+              */}
             </div>
 
             <div>

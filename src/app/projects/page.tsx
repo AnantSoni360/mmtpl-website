@@ -78,13 +78,15 @@ export default function Projects() {
             <FadeUp key={project.id} delay={0.1}>
               <div className="group cursor-pointer rounded-[var(--radius-card)] overflow-hidden border border-[var(--color-silver)] bg-[var(--color-paper)] hover:shadow-[var(--shadow-card)] transition-all flex flex-col h-full">
                 <div className="relative w-full h-[240px] overflow-hidden bg-[var(--color-bone)]">
+                  {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
                   <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill 
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 33vw"
-                  />
+                  /> 
+                  */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     <TagPill variant="bone">{project.category}</TagPill>
                     {(project.status || project.year) && (
@@ -142,7 +144,9 @@ export default function Projects() {
 
 
       {/* ── LONG-TERM MAINTENANCE EXPERIENCE ── */}
+      {/* TEMPORARILY HIDDEN PROJECT PHOTOS 
       <InteractiveProjectExplorer />
+      */}
 
         <section className="bg-bg-main py-16 mt-8 border-t border-silver/30 dark:border-white/10">
         <div className="container mx-auto px-6 max-w-[var(--page-max-width)]">
