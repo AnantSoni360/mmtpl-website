@@ -315,10 +315,12 @@ export default function About() {
             
             <div className="w-full lg:w-1/3 flex flex-col items-center text-center relative z-10">
               <div className="w-48 h-48 md:w-56 md:h-56 relative rounded-full overflow-hidden border-4 border-[var(--color-bone)] shadow-md mb-6 bg-[var(--color-silver)]/20 flex items-center justify-center">
-                {/* Fallback avatar if image is missing */}
-                <svg className="w-24 h-24 text-[var(--color-slate)] opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
+                <Image 
+                  src="/images/team/Azghar-Ahmed.jpeg" 
+                  alt="Mr. Azghar Ahmed" 
+                  fill 
+                  className="object-cover"
+                />
               </div>
               <h3 className="display text-3xl md:text-4xl text-[var(--color-obsidian)] mb-2">Mr. Azghar Ahmed</h3>
               <p className="text-[#3b82f6] font-semibold text-sm tracking-[0.2em] uppercase font-switzer">Founder & Managing Director</p>
