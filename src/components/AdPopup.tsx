@@ -80,7 +80,7 @@ export function AdPopup() {
               </div>
               <div className="flex gap-3 w-full sm:w-auto">
                 <a 
-                  href="mailto:info@mnm.ltd"
+                  href="mailto:info@cgt.com"
                   className="flex-1 sm:flex-none text-center bg-white text-blue-900 hover:bg-gray-100 font-semibold py-2.5 px-6 rounded-full transition-colors whitespace-nowrap"
                 >
                   Email Resume
