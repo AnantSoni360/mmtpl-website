@@ -64,8 +64,8 @@ export async function POST(req: Request) {
       try {
         // Send inquiry details to Admin
         await resend.emails.send({
-          from: 'MMTPL Inquiries <onboarding@resend.dev>', // Should be a verified domain in production
-          to: 'anantsoni360@gmail.com', 
+          from: 'MMTPL Inquiries <onboarding@resend.dev>', // MUST change to a verified domain in production
+          to: 'abhishek.soni322@gmail.com', 
           subject: `New Inquiry from ${validatedData.name} - ${validatedData.service}`,
           html: `
             <h3>New Inquiry Received</h3>
