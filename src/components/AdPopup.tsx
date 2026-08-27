@@ -9,20 +9,15 @@ export function AdPopup() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    // Check if the user has already closed the popup in this session
-    const hasSeenPopup = sessionStorage.getItem('mmtpl_ad_seen')
-    if (!hasSeenPopup) {
-      // Small delay so it pops up nicely after initial page load
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
+    // Small delay so it pops up nicely after initial page load
+    const timer = setTimeout(() => {
+      setIsOpen(true)
+    }, 1000)
+    return () => clearTimeout(timer)
   }, [])
 
   const closePopup = () => {
     setIsOpen(false)
-    sessionStorage.setItem('mmtpl_ad_seen', 'true')
   }
 
   // Prevent scrolling when popup is open
