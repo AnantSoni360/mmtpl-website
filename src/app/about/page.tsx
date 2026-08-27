@@ -255,28 +255,93 @@ export default function About() {
       {/* ── FINANCIAL GROWTH MOUNTAIN ── */}
       <GrowthMountain />
 
-      {/* ── VISION & MISSION ── */}
+      {/* ── VISION, MISSION & PHILOSOPHY ── */}
       <section className="container mx-auto px-6 max-w-[var(--page-max-width)] py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <FadeUp delay={0.1}>
-            <div className="bg-[var(--color-paper)] p-10 rounded-[var(--radius-card)] border border-[var(--color-silver)] h-full hover:border-[var(--color-graphite)] transition-colors">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Vision */}
+          <FadeUp delay={0.1} className="lg:col-span-1">
+            <div className="bg-[var(--color-paper)] p-8 md:p-10 rounded-[var(--radius-card)] border border-[var(--color-silver)] h-full hover:border-[var(--color-graphite)] transition-colors flex flex-col">
               <h2 className="display text-[var(--color-obsidian)] mb-6">Vision</h2>
-              <p className="body-text text-[var(--color-graphite)] text-lg leading-relaxed">
-                To be a globally competitive leader in industrial installation and engineering services by embracing innovation, advanced technologies, and operational excellence. We strive to create sustainable value for our stakeholders while upholding the highest standards of integrity, business ethics, and professionalism, contributing to the growth of industry and enhancing the quality of life in the communities we serve.
+              <p className="body-text text-[var(--color-graphite)] text-lg leading-relaxed flex-grow">
+                To be a globally competitive leader in industrial installation and engineering services by embracing innovation, advanced technologies, and operational excellence. We strive to create sustainable value while upholding the highest standards of integrity.
               </p>
             </div>
           </FadeUp>
 
-          <FadeUp delay={0.2}>
-            <div className="bg-[var(--color-obsidian)] p-10 rounded-[var(--radius-card)] h-full relative overflow-hidden">
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[var(--color-sky-veil)] opacity-20 rounded-full blur-2xl" />
-              <h2 className="display text-[var(--color-paper)] mb-6">Mission</h2>
-              <p className="body-text text-[var(--color-paper)] opacity-80 text-lg leading-relaxed relative z-10">
-                To deliver exceptional engineering, construction, and industrial installation services across our core sectors by maintaining the highest standards of quality, safety, professionalism, and timely execution. We are committed to exceeding customer expectations, fostering innovation, and creating long-term value for our clients, employees, and stakeholders.
+          {/* Mission */}
+          <FadeUp delay={0.2} className="lg:col-span-1">
+            <div className="bg-[var(--color-obsidian)] p-8 md:p-10 rounded-[var(--radius-card)] h-full relative overflow-hidden flex flex-col">
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[var(--color-sky-veil)] opacity-20 rounded-full blur-2xl pointer-events-none" />
+              <h2 className="display text-[var(--color-paper)] mb-6 relative z-10">Mission</h2>
+              <p className="body-text text-[var(--color-paper)] opacity-90 text-lg leading-relaxed relative z-10 flex-grow">
+                To deliver exceptional engineering, construction, and industrial installation services across our core sectors by maintaining the highest standards of quality, safety, professionalism, and timely execution.
               </p>
             </div>
           </FadeUp>
+
+          {/* Philosophy */}
+          <FadeUp delay={0.3} className="lg:col-span-1">
+            <div className="bg-gradient-to-br from-[var(--color-bone)] to-[var(--color-paper)] p-8 md:p-10 rounded-[var(--radius-card)] border border-[#3b82f6]/30 h-full flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#3b82f6]/10 to-transparent rounded-bl-full pointer-events-none" />
+              <h2 className="display text-[var(--color-obsidian)] mb-6 relative z-10">Philosophy</h2>
+              <ul className="flex flex-col gap-3 flex-grow relative z-10">
+                {[
+                  "Excellence in execution",
+                  "Innovation & improvement",
+                  "Integrity & transparency",
+                  "Safety-first operations",
+                  "Customer-centric service",
+                  "Professional accountability"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-[#3b82f6] mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-[var(--color-graphite)] font-medium text-[15px]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeUp>
         </div>
+      </section>
+
+      {/* ── FOUNDER'S DESK ── */}
+      <section className="container mx-auto px-6 max-w-[var(--page-max-width)] pb-16 pt-8">
+        <FadeUp>
+          <div className="bg-[var(--color-paper)] rounded-[var(--radius-card-lg)] p-8 md:p-12 lg:p-16 border border-[var(--color-silver)] shadow-sm relative overflow-hidden flex flex-col lg:flex-row gap-12 items-center">
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#3b82f6]/5 to-transparent rounded-bl-full pointer-events-none dark:from-[#3b82f6]/10" />
+            
+            <div className="w-full lg:w-1/3 flex flex-col items-center text-center relative z-10">
+              <div className="w-48 h-48 md:w-56 md:h-56 relative rounded-full overflow-hidden border-4 border-[var(--color-bone)] shadow-md mb-6 bg-[var(--color-silver)]/20 flex items-center justify-center">
+                {/* Fallback avatar if image is missing */}
+                <svg className="w-24 h-24 text-[var(--color-slate)] opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+              <h3 className="display text-3xl md:text-4xl text-[var(--color-obsidian)] mb-2">Mr. Azghar Ahmed</h3>
+              <p className="text-[#3b82f6] font-semibold text-sm tracking-[0.2em] uppercase font-switzer">Founder & Managing Director</p>
+            </div>
+
+            <div className="w-full lg:w-2/3 flex flex-col gap-6 relative z-10">
+              <h3 className="font-editorial text-2xl md:text-[32px] text-[var(--color-obsidian)] leading-snug">
+                A Visionary Entrepreneur. <span className="text-[#3b82f6] italic">A Strategic Leader.</span>
+              </h3>
+              <p className="text-lg text-[var(--color-graphite)] leading-relaxed font-switzer font-light">
+                Beginning with a humble foundation in <strong className="font-medium text-[var(--color-obsidian)]">2004</strong>, Mr. Azghar Ahmed established MMTPL with an ambitious vision to create a professionally managed organization capable of delivering reliable, high-quality industrial services to India's core sectors.
+              </p>
+              <p className="text-lg text-[var(--color-graphite)] leading-relaxed font-switzer font-light">
+                Over the past two decades, his continuous efforts and leadership have transformed the organization from a specialized contractor into a well-established and <strong className="font-medium text-[var(--color-obsidian)]">vertically integrated industrial service provider</strong>, serving critical requirements across ferrous, non-ferrous, and steel plant industries.
+              </p>
+              <div className="mt-4 p-6 bg-gradient-to-r from-[var(--color-bone)] to-transparent rounded-r-[var(--radius-card)] border-l-4 border-[#3b82f6]">
+                <p className="font-editorial text-xl md:text-2xl text-[var(--color-obsidian)] italic leading-relaxed">
+                  "True growth is built through vision, consistent effort, integrity, and the ability to create lasting value for customers, employees, and society."
+                </p>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
       </section>
 
       {/* ── LEADERSHIP TEAM ── */}
