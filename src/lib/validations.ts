@@ -8,7 +8,8 @@ export const InquirySchema = z.object({
   phone: z.string().regex(/^(\+91[\-\s]?)?[6-9]\d{9}$/, 'Please enter a valid Indian mobile number'),
   service: z.enum([
     'mechanical-fabrication', 'civil-infrastructure', 'electrical-instrumentation',
-    'plant-erection', 'epc-turnkey', 'shutdown-maintenance', 'other'
+    'plant-erection', 'epc-turnkey', 'shutdown-maintenance', 'other',
+    'refractory', 'structural', 'equipment', 'civil', 'operations'
   ], { message: 'Please select a service' }),
   message: z.string().min(20).max(2000),
 })

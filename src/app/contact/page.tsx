@@ -50,13 +50,21 @@ export default function Contact() {
     setFormStatus('submitting')
     
     const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData.entries())
+    const rawData = Object.fromEntries(formData.entries())
+    
+    const payload = {
+      name: `${rawData.firstName} ${rawData.lastName}`.trim(),
+      email: rawData.email,
+      phone: rawData.phone,
+      service: rawData.serviceType,
+      message: rawData.message,
+    }
     
     try {
       const res = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       })
       if (!res.ok) throw new Error('Submission failed')
       setFormStatus('success')

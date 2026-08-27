@@ -62,9 +62,10 @@ export async function POST(req: Request) {
     // 5. Send Email Notification (If Resend is configured)
     if (process.env.RESEND_API_KEY) {
       try {
+        // Send inquiry details to Admin
         await resend.emails.send({
           from: 'MMTPL Inquiries <onboarding@resend.dev>', // Should be a verified domain in production
-          to: 'contact@mmtpl.in', // Replace with actual company email
+          to: 'abhishek.soni322@gmail.com', 
           subject: `New Inquiry from ${validatedData.name} - ${validatedData.service}`,
           html: `
             <h3>New Inquiry Received</h3>
@@ -76,6 +77,27 @@ export async function POST(req: Request) {
             <hr />
             <p><strong>Message:</strong></p>
             <p>${validatedData.message}</p>
+          `,
+        })
+
+        // Send confirmation auto-reply to User
+        await resend.emails.send({
+          from: 'MMTPL Support <onboarding@resend.dev>', // Should be a verified domain in production
+          to: validatedData.email,
+          subject: `We've received your inquiry - MMTPL`,
+          html: `
+            <div style="font-family: sans-serif; color: #333; line-height: 1.6;">
+              <h2 style="color: #1a202c;">Hello ${validatedData.name},</h2>
+              <p>Thank you for contacting Man Machine Technocrats Pvt. Ltd.</p>
+              <p>This is to confirm that we have successfully received your inquiry regarding <strong>${validatedData.service}</strong>.</p>
+              <p>Our team is currently reviewing your message and will get back to you shortly. Please wait for our response.</p>
+              <div style="background-color: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <p style="margin: 0;"><strong>Need immediate assistance?</strong></p>
+                <p style="margin: 5px 0 0 0;">Feel free to call us directly at <strong>+91 9008038052</strong>.</p>
+              </div>
+              <p>Best Regards,</p>
+              <p><strong>The MMTPL Team</strong></p>
+            </div>
           `,
         })
       } catch (emailError) {
