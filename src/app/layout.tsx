@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConsoleSuppressor } from "@/components/ConsoleSuppressor";
 import { Toaster } from "sonner";
+import { AdPopup } from "@/components/AdPopup";
 
 export const metadata: Metadata = {
   title: 'MMTPL — Turnkey Industrial Contractor | Refractory, Steel & EPC Projects',
@@ -23,6 +24,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConditionalLayout>
             <Toaster position="top-center" />
+            <AdPopup />
             {children}
           </ConditionalLayout>
         </ThemeProvider>
