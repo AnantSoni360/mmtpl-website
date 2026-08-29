@@ -18,20 +18,20 @@ const md: Leader = {
   name: 'Azghar Ahmed', 
   title: 'Managing Director', 
   department: 'Executive Board', 
-  experience: '25+ Years', 
+  experience: '32+ Years', 
   responsibilities: ['Strategic Vision', 'Global Expansion', 'Corporate Governance'], 
   photo: '/images/team/Azghar-Ahmed.jpeg' 
 }
 const directors: Leader[] = [
-  { id: 'd1', name: 'D.S. Bhowmik', title: 'Director Project', department: 'Technical', experience: '20+ Years', responsibilities: ['Technical Strategy', 'Project Engineering'], photo: '/images/team/DS-Bhowmik.jpeg' },
+  { id: 'd1', name: 'D.S. Bhowmik', title: 'Director Project', department: 'Technical', experience: '35+ Years', responsibilities: ['Technical Strategy', 'Project Engineering'], photo: '/images/team/DS-Bhowmik.jpeg' },
   { id: 'd2', name: 'Akheel Ahmed', title: 'Director Operation', department: 'Operations', experience: '22+ Years', responsibilities: ['Operational Excellence', 'Resource Management'], photo: '/logo.png' },
-  { id: 'd3', name: 'Madhusudhan', title: 'Director Mechanical Projects', department: 'Mechanical Projects', experience: '18+ Years', responsibilities: ['Mechanical Erection', 'Heavy Machinery'], photo: '/logo.png' },
+  { id: 'd3', name: 'Madhusudhan', title: 'Director Mechanical Projects', department: 'Mechanical Projects', experience: '35 Years', responsibilities: ['Mechanical Erection', 'Heavy Machinery'], photo: '/images/team/Madhusudhan.jpeg' },
   { id: 'd4', name: 'Kasim Vali', title: 'Director F & A', department: 'Finance & Accounts', experience: '15+ Years', responsibilities: ['Financial Planning', 'Corporate Audits'], photo: '/images/team/Kasim-Vali.jpeg' }
 ]
 const gms: Leader[] = [
   { id: 'g1', name: 'Abhishek Soni', title: 'GM - Planning, Billing, HR', department: 'Planning, Commercial & HR', experience: '15+ Years', responsibilities: ['Project Planning', 'Cost Control', 'Procurement', 'Human Resources'], photo: '/images/team/Abhishek-Soni.jpeg' },
   { id: 'g2', name: 'Musthiaq Mohammad', title: 'GM - Project Refractory', department: 'Refractory Division', experience: '18+ Years', responsibilities: ['Refractory Execution', 'Quality Assurance'], photo: '/logo.png' },
-  { id: 'g3', name: 'M V Bhaskar', title: 'GM - Projects Mechanical', department: 'Mechanical Division', experience: '20+ Years', responsibilities: ['Site Management', 'Equipment Erection'], photo: '/images/team/MV-Bhaskar.jpeg' },
+  { id: 'g3', name: 'M V Bhaskar', title: 'GM - Projects Mechanical', department: 'Mechanical Division', experience: '35 Years (Coke Oven 25+ Years, Blast Furnace 10+ Years)', responsibilities: ['Site Management', 'Equipment Erection'], photo: '/images/team/MV-Bhaskar.jpeg' },
   { id: 'g4', name: 'Sharana', title: 'GM - F & A', department: 'Finance & Accounts', experience: '14+ Years', responsibilities: ['Accounting', 'Financial Reporting'], photo: '/images/team/Sharana-N.jpeg' },
   { id: 'g5', name: 'Kamal Deshmukh', title: 'GM - Safety', department: 'HSE', experience: '16+ Years', responsibilities: ['Safety Standards', 'Site Compliance'], photo: '/logo.png' }
 ]
