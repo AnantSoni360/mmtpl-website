@@ -1,0 +1,412 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// PHASE 1: ACTIVE MODELS
+// ==========================================
+
+model Inquiry {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  company     String?
+  email       String
+  phone       String
+  service     String
+  message     String        
+  status      InquiryStatus @default(NEW)
+  ipAddress   String?       
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Setting {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  key         String   @unique
+  value       String   
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+model JobPosting {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  department   String
+  location     String
+  type         JobType          @default(FULL_TIME)
+  experience   String    
+  description  String           
+  requirements String[]
+  isActive     Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  applications JobApplication[]
+}
+
+model JobApplication {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String
+  phone        String
+  position     String
+  experience   String
+  message      String?           
+  resumeUrl    String    
+  jobPostingId String? @db.ObjectId
+  status       ApplicationStatus @default(RECEIVED)
+  
+  // Future relation to JobSeeker profile
+  jobSeekerId  String? @db.ObjectId           
+  jobSeeker    JobSeeker?        @relation(fields: [jobSeekerId], references: [id])
+
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  jobPosting   JobPosting?       @relation(fields: [jobPostingId], references: [id])
+
+  @@index([email])
+  @@index([status])
+}
+
+// ==========================================
+// PHASE 2: PORTAL MODELS
+// ==========================================
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+  CLIENT
+  JOB_SEEKER
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  email            String            @unique
+  passwordHash     String?
+  role             Role
+  isActive         Boolean           @default(true)
+  avatarUrl        String?
+  lastLoginAt      DateTime?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  employee         Employee?
+  client           Client?
+  jobSeeker        JobSeeker?
+
+  assignedTasks    Task[]            @relation("AssignedTasks")
+  createdTasks     Task[]            @relation("CreatedTasks")
+  postedUpdates    ProjectUpdate[]   @relation("PostedUpdates")
+  uploadedDocs     Document[]        @relation("UploadedDocs")
+  sentMessages     Message[]         @relation("SentMessages")
+  receivedMessages Message[]         @relation("ReceivedMessages")
+  notifications    Notification[]
+  approvedLeaves   LeaveRequest[]    @relation("ApprovedLeaves")
+}
+
+model Employee {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String @db.ObjectId            @unique
+  user             User              @relation(fields: [userId], references: [id])
+  employeeCode     String            @unique
+  department       String
+  designation      String
+  phone            String?
+  location         String?
+  joinDate         DateTime          
+  employmentType   String
+
+  assignments      ProjectAssignment[]
+  attendance       Attendance[]
+  leaveRequests    LeaveRequest[]    @relation("EmployeeLeaves")
+}
+
+model Client {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String @db.ObjectId            @unique
+  user             User              @relation(fields: [userId], references: [id])
+  companyName      String
+  gstin            String?
+  address          String?           
+  contactPerson    String?
+
+  projects         Project[]
+  invoices         Invoice[]
+  supportTickets   SupportTicket[]
+}
+
+model JobSeeker {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String @db.ObjectId            @unique
+  user             User              @relation(fields: [userId], references: [id])
+  phone            String?
+  experience       String?
+  currentRole      String?
+  resumeUrl        String?
+
+  applications     JobApplication[]
+}
+
+model Project {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  clientId         String @db.ObjectId
+  client           Client            @relation(fields: [clientId], references: [id])
+  projectCode      String            @unique
+  name             String
+  location         String?
+  scope            String?           
+  valueCr          Float?
+  startDate        DateTime          
+  endDate          DateTime?         
+  status           ProjectStatus     @default(PLANNING)
+  category         String?
+
+  assignments      ProjectAssignment[]
+  tasks            Task[]
+  invoices         Invoice[]
+  updates          ProjectUpdate[]
+  documents        Document[]
+  messages         Message[]
+
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model ProjectAssignment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String @db.ObjectId
+  project          Project           @relation(fields: [projectId], references: [id])
+  employeeId       String @db.ObjectId
+  employee         Employee          @relation(fields: [employeeId], references: [id])
+  roleOnProject    String
+  assignedFrom     DateTime          
+  assignedTo       DateTime?         
+}
+
+model Task {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String @db.ObjectId
+  project          Project           @relation(fields: [projectId], references: [id])
+  assignedToId     String? @db.ObjectId
+  assignedTo       User?             @relation("AssignedTasks", fields: [assignedToId], references: [id])
+  createdById      String @db.ObjectId
+  createdBy        User              @relation("CreatedTasks", fields: [createdById], references: [id])
+  title            String
+  description      String?           
+  priority         TaskPriority      @default(MEDIUM)
+  status           TaskStatus        @default(PENDING)
+  dueDate          DateTime?         
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model Attendance {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  employeeId       String @db.ObjectId
+  employee         Employee          @relation(fields: [employeeId], references: [id])
+  date             DateTime          
+  checkIn          DateTime?
+  checkOut         DateTime?
+  status           AttendanceStatus
+  hoursWorked      Float?
+
+  @@unique([employeeId, date])
+}
+
+model LeaveRequest {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  employeeId       String @db.ObjectId
+  employee         Employee          @relation("EmployeeLeaves", fields: [employeeId], references: [id])
+  approvedById     String? @db.ObjectId
+  approvedBy       User?             @relation("ApprovedLeaves", fields: [approvedById], references: [id])
+  fromDate         DateTime          
+  toDate           DateTime          
+  leaveType        LeaveType
+  reason           String            
+  status           LeaveStatus       @default(PENDING)
+  adminRemark      String?           
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model Invoice {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String @db.ObjectId
+  project          Project           @relation(fields: [projectId], references: [id])
+  clientId         String @db.ObjectId
+  client           Client            @relation(fields: [clientId], references: [id])
+  invoiceNumber    String            @unique
+  amount           Float
+  tax              Float
+  total            Float
+  dueDate          DateTime          
+  status           InvoiceStatus     @default(DRAFT)
+  pdfUrl           String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  items            InvoiceItem[]
+}
+
+model InvoiceItem {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  invoiceId   String @db.ObjectId
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Int
+  unitPrice   Float
+  total       Float
+}
+
+model ProjectUpdate {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String @db.ObjectId
+  project          Project           @relation(fields: [projectId], references: [id])
+  postedById       String @db.ObjectId
+  postedBy         User              @relation("PostedUpdates", fields: [postedById], references: [id])
+  title            String
+  content          String            
+  photoUrls        String[]
+  isClientVisible  Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model Document {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId        String? @db.ObjectId
+  project          Project?          @relation(fields: [projectId], references: [id])
+  uploadedById     String @db.ObjectId
+  uploadedBy       User              @relation("UploadedDocs", fields: [uploadedById], references: [id])
+  name             String
+  fileUrl          String
+  docType          String
+  isClientVisible  Boolean           @default(false)
+  isEmployeeVisible Boolean          @default(false)
+  createdAt        DateTime          @default(now())
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  fromUserId       String @db.ObjectId
+  fromUser         User              @relation("SentMessages", fields: [fromUserId], references: [id])
+  toUserId         String @db.ObjectId
+  toUser           User              @relation("ReceivedMessages", fields: [toUserId], references: [id])
+  projectId        String? @db.ObjectId
+  project          Project?          @relation(fields: [projectId], references: [id])
+  content          String            
+  isRead           Boolean           @default(false)
+  readAt           DateTime?
+  createdAt        DateTime          @default(now())
+}
+
+model Notification {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String @db.ObjectId
+  user             User              @relation(fields: [userId], references: [id])
+  title            String
+  body             String            
+  isRead           Boolean           @default(false)
+  link             String?
+  type             String
+  createdAt        DateTime          @default(now())
+}
+
+model SupportTicket {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  clientId         String @db.ObjectId
+  client           Client            @relation(fields: [clientId], references: [id])
+  subject          String
+  description      String            
+  status           TicketStatus      @default(OPEN)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+// Enums
+enum InquiryStatus { 
+  NEW 
+  REVIEWED 
+  REPLIED 
+  CLOSED 
+}
+
+enum ApplicationStatus { 
+  RECEIVED 
+  SHORTLISTED 
+  INTERVIEW_SCHEDULED
+  REJECTED 
+  HIRED 
+}
+
+enum JobType { 
+  FULL_TIME 
+  CONTRACT 
+  PROJECT_BASED 
+}
+
+enum ProjectStatus { 
+  PLANNING 
+  IN_PROGRESS 
+  COMPLETED 
+  ON_HOLD 
+}
+
+enum TaskStatus { 
+  PENDING 
+  IN_PROGRESS 
+  COMPLETED 
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum AttendanceStatus { 
+  PRESENT 
+  ABSENT 
+  HALF_DAY 
+  LEAVE 
+}
+
+enum LeaveStatus { 
+  PENDING 
+  APPROVED 
+  REJECTED 
+}
+
+enum LeaveType {
+  SICK
+  CASUAL
+  ANNUAL
+  UNPAID
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
